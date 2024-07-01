@@ -2,17 +2,21 @@ import = [
   "~/.config/alacritty/themes/themes/carbonfox.toml",
   "~/.config/alacritty/keybindings.toml",
 ]
-shell = { program = "/opt/homebrew/bin/tmux", args = ["new-session"]}
+[shell]
+program = "/opt/homebrew/bin/tmux"
+args = ["new-session"]
 [env]
 TERM = "xterm-256color"
 [window]
 padding.x = 10
 padding.y = 10
 decorations = "Buttonless"
-position = { y = 190, x = 150 }
-dimensions = { columns = 160, lines = 42}
+startup_mode = "Windowed"
+dimensions = { columns = 100, lines = 50 }
+position = { x = 325, y = 75 }
+dynamic_title = true
 
-opacity = 0.9
+opacity = 0.8
 
 option_as_alt = "Both"
 
