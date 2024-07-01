@@ -1,10 +1,81 @@
-return
-{
+return {
+  -- treesitter
+  {
+    'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        highlight = { enable = true, },
+        ensure_installed = {
+          'html',
+          'javascript',
+          'typescript',
+          'tsx',
+          'c',
+          'css',
+        },
+        modules = {},
+        sync_install = false,
+        ignore_install = {},
+        auto_install = true,
+      })
+    end,
+  },
+  --autotag
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup({
+        filetypes = { 'html', 'javascript', 'typescript', 'typescriptreact', 'tsx', 'javascriptreact' },
+      })
+    end,
+  },
+  -- autopairs
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    dependencies = {
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      local autopairs = require('nvim-autopairs')
+      autopairs.setup({
+        check_ts = true,
+        ts_config = {
+          lua = { 'string' },
+          javascript = { 'template_string' },
+          java = false,
+        },
+      })
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+  -- autotag
+  {
+    'windwp/nvim-ts-autotag',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-ts-autotag').setup({})
+    end,
+  },
+  -- indent-blankline
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    main = 'ibl',
+    opts = {
+      indent = { char = '▏' },
+    }
+  },
   -- nvim-tree
   {
-    "nvim-tree/nvim-tree.lua",
+    'nvim-tree/nvim-tree.lua',
     config = function()
-      local nvimtree = require("nvim-tree")
+      local nvimtree = require('nvim-tree')
       local keymap = vim.keymap
 
       vim.g.loaded_netrw = 1
@@ -19,7 +90,7 @@ return
           },
         },
         sort = {
-          sorter = "case_sensitive",
+          sorter = 'case_sensitive',
         },
         view = {
           width = 30,
@@ -33,165 +104,79 @@ return
         },
       })
       -- keymap section
-      keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", {desc = "Toggle file explorer"})
+      keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
     end,
   },
   -- telescope
   {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.6",
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
     dependencies = {
-    "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'nvim-tree/nvim-web-devicons',
+      'folke/todo-comments.nvim',
     },
     config = function()
-      local builtin = require("telescope.builtin")
-      local telescope = require("telescope")
+      local builtin = require('telescope.builtin')
+      local telescope = require('telescope')
       local keymap = vim.keymap
 
       telescope.setup({
         defaults = {
-          path_display = {"smart"}
+          path_display = { 'smart' }
         }
       })
-      telescope.load_extension("fzf")
+      telescope.load_extension('fzf')
       -- keymap section
-      keymap.set('n', '<leader>ff', builtin.find_files, {desc = "Find files"})
-      keymap.set('n', '<leader>fs', builtin.live_grep, {desc = "Find file by text"})
+      keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+      keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Find file by text' })
     end,
   },
-  -- which-key
+  -- todo comments
   {
-    "folke/which-key.nvim",
-    event = "VimEnter",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-      require("which-key").setup({
-        window = {
-          border = "single",
-        },
-      })
-    end,
-  },
-  -- LSP Zero
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = false,
-    init = function()
-      -- Disable automatic setup, we are doing it manually
-      vim.g.lsp_zero_extend_cmp = 0
-      vim.g.lsp_zero_extend_lspconfig = 0
-      -- keymap section
-      local keymap = vim.keymap
-      keymap.set('n', '<leader>mm', '<cmd>Mason<CR>', {desc = "Open Mason"})
-      keymap.set('n', '<leader>ml', '<cmd>LspInstall<CR>', {desc = "Install LSP for this filetype"})
-    end,
-  },
-  {
-    'williamboman/mason.nvim',
-    lazy = false,
-    config = true,
-  },
-
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      {'L3MON4D3/LuaSnip'},
-    },
+    'folke/todo-comments.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = 'nvim-lua/plenary.nvim',
     config = function()
-      -- Here is where you configure the autocompletion settings.
-      local lsp_zero = require('lsp-zero')
-      lsp_zero.extend_cmp()
-
-      -- And you can configure cmp even more, if you want to.
-      local cmp = require('cmp')
-      local cmp_action = lsp_zero.cmp_action()
-
-      cmp.setup({
-        formatting = lsp_zero.cmp_format({details = true}),
-        mapping = cmp.mapping.preset.insert({
-          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-          ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-        }),
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        },
-      })
-    end
+      require('todo-comments').setup({})
+    end,
   },
-
-  -- LSP
   {
-    'neovim/nvim-lspconfig',
-    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-    event = {'BufReadPre', 'BufNewFile'},
-    dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'williamboman/mason-lspconfig.nvim'},
-    },
+    'akinsho/toggleterm.nvim',
+    version = '*',
     config = function()
-      -- This is where all the LSP shenanigans will live
-      local lsp_zero = require('lsp-zero')
-      lsp_zero.extend_lspconfig()
-
-      --- if you want to know more about lsp-zero and mason.nvim
-      --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-      lsp_zero.on_attach(function(client, bufnr)
-        -- see :help lsp-zero-keybindings
-        -- to learn the available actions
-        lsp_zero.default_keymaps({buffer = bufnr})
-      end)
-
-      require('mason-lspconfig').setup({
-        ensure_installed = {},
-        handlers = {
-          -- this first function is the "default handler"
-          -- it applies to every language server without a "custom handler"
-          function(server_name)
-            require('lspconfig')[server_name].setup({})
-          end,
-
-          -- this is the "custom handler" for `lua_ls`
-          lua_ls = function()
-            -- (Optional) Configure lua language server for neovim
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
-          end,
-        }
-      })
-    end
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    config = function ()
-      require("toggleterm").setup({
+      require('toggleterm').setup({
         size = function(term)
-          if term.direction == "horizontal" then
+          if term.direction == 'horizontal' then
             return vim.o.lines * 0.4
-          elseif term.direction == "vertical" then
+          elseif term.direction == 'vertical' then
             return vim.o.columns * 0.4
-          elseif term.direction == "float" then
+          elseif term.direction == 'float' then
             return math.min(vim.o.columns * 0.8, vim.o.lines * 0.8)
           end
         end,
-        direction = "float",
+        direction = 'float',
         float_opts = {
           border = 'curved',
         },
       })
       local keymap = vim.keymap
-      keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', {desc = "Toggle Terminal"})
+      keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', { desc = 'Toggle Terminal' })
     end,
-  }
+  },
+  -- which-key
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require('which-key').setup({
+        window = {
+          border = 'single',
+        },
+      })
+    end,
+  },
 }

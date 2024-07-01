@@ -1,7 +1,7 @@
 local opt = vim.opt
 local o = vim.o
 
-opt.guicursor =  ""
+opt.guicursor = ''
 
 opt.relativenumber = true
 opt.number = true
@@ -19,20 +19,20 @@ opt.smartcase = true
 opt.cursorline = true
 
 opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
+opt.background = 'dark'
+opt.signcolumn = 'yes'
 
-opt.backspace = "indent,eol,start"
+opt.backspace = 'indent,eol,start'
 
-opt.clipboard:append("unnamedplus")
+opt.clipboard:append('unnamedplus')
 
 opt.splitright = true
 opt.splitbelow = true
 
 opt.swapfile = false
 
-opt.fillchars = {eob = " "}
+opt.fillchars = { eob = ' ' }
 
-opt.backspace = "indent,eol,start"
+opt.backspace = 'indent,eol,start'
 
 o.encoding = 'utf-8'

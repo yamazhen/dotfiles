@@ -1,31 +1,31 @@
 return {
   -- colorscheme
   {
-    "EdenEast/nightfox.nvim",
+    'EdenEast/nightfox.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      require("nightfox").setup({
+      require('nightfox').setup({
         options = {
           transparent = true,
         }
       })
-      vim.cmd("colorscheme carbonfox")
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.cmd('colorscheme carbonfox')
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
     end,
   },
   -- icons
   {
-    "nvim-tree/nvim-web-devicons",
+    'nvim-tree/nvim-web-devicons',
     config = function()
-      require("nvim-web-devicons").setup({})
+      require('nvim-web-devicons').setup({})
     end,
   },
   -- statusline
   {
-    "nvim-lualine/lualine.nvim",
-    requires = {"nvim-tree/nvim-web-devicons"},
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup({
         options = {
@@ -69,15 +69,15 @@ return {
   },
   -- tabline
   {
-    "akinsho/bufferline.nvim",
-    requires = {"nvim-tree/nvim-web-devicons"},
-    version = "*",
+    'akinsho/bufferline.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    version = '*',
     opts = {
       options = {
-        mode = "buffers",
-        separator_style = "none",
+        mode = 'buffers',
+        separator_style = 'none',
         indicator = {
-                style = "none",
+          style = 'none',
         },
         tab_size = 18,
       },

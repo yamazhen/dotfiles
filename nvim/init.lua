@@ -1,2 +1,2 @@
-require("zhen.core")
-require("zhen.lazy")
+require('zhen.core')
+require('zhen.lazy')
