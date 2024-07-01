@@ -53,8 +53,8 @@ return {
           end,
         },
         sources = cmp.config.sources({
-          { name = 'luasnip' },
           { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'buffer' },
           { name = 'path' },
         }),
@@ -93,6 +93,9 @@ return {
       keymap.set('n', '<leader>mm', '<cmd>Mason<CR>', { desc = 'Open Mason' })
       keymap.set('n', '<leader>ml', '<cmd>LspInstall<CR>', { desc = 'Install LSP for this filetype' })
       keymap.set('n', '<leader>mr', '<cmd>LspRestart<CR>', { desc = 'Restart LSP for this file' })
+      keymap.set("n", "<leader>md", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Show buffer diagnostics' })
+      keymap.set("n", "<leader>mD", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = 'Smart rename' })
     end
   },
   {
