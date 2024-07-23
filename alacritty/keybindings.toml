@@ -1,0 +1,4 @@
+[keyboard]
+bindings = [
+  { key = "ArrowUp", mods = "Control|Shift", action = "ToggleSimpleFullscreen"},
+]

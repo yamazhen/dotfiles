@@ -1,0 +1,25 @@
+alt - return : alacritty;
+
+alt - q : yabai -m window --close;
+
+alt - 1 : yabai -m space --focus 1;
+alt - 2 : yabai -m space --focus 2;
+alt - 3 : yabai -m space --focus 3;
+alt - 4 : yabai -m space --focus 4;
+alt - 5 : yabai -m space --focus 5;
+alt - p : yabai -m space --focus recent;
+alt - right : yabai -m space --focus next;
+alt - left : yabai -m space --focus prev;
+
+alt - h : yabai -m window --focus west;
+alt - l : yabai -m window --focus east;
+alt - k : yabai -m window --focus north;
+alt - j : yabai -m window --focus south;
+
+shift + alt - 1 : yabai -m window --space 1;
+shift + alt - 2 : yabai -m window --space 2;
+shift + alt - 3 : yabai -m window --space 3;
+shift + alt - 4 : yabai -m window --space 4;
+shift + alt - 5 : yabai -m window --space 5;
+shift + alt - right : yabai -m window --space next;
+shift + alt - left : yabai -m space --space prev;

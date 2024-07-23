@@ -1,0 +1,42 @@
+#!/bin/sh
+
+bar=(
+  color=0x50000000
+  height=32
+  sticky=on
+  padding_left=12
+  padding_right=12
+)
+
+default=(
+  icon.drawing=off
+  label.padding_left=4
+  label.padding_right=4
+  label.color=0xffffffff
+  label.font="JetBrainsMonoNL Nerd Font:Regular:14.0"
+)
+
+sketchybar \
+  --bar "${bar[@]}" \
+  --default "${default[@]}"
+
+sketchybar \
+  --add item space left \
+  --set space script='~/.config/sketchybar/scripts/spaces.sh' \
+  --subscribe space space_windows_change space_change
+
+sketchybar \
+  --add item time right \
+  --set time script='sketchybar --set $NAME label="| Time: $(date "+%I:%M%p")"' \
+             update_freq=30 \
+  --subscribe time system_woke
+
+sketchybar \
+  --add item battery right \
+  --set battery script='~/.config/sketchybar/scripts/battery_monitor.sh'
+
+sketchybar \
+  --add item wifi right \
+  --set wifi script="~/.config/sketchybar/scripts/wifi.sh" \
+
+sketchybar --update
