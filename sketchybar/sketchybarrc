@@ -45,5 +45,6 @@ sketchybar \
 sketchybar \
   --add item wifi right \
   --set wifi script="~/.config/sketchybar/scripts/wifi.sh" \
+  --subscribe wifi wifi_change
 
 sketchybar --update
