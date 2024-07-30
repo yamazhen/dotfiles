@@ -25,6 +25,7 @@ return {
         config = function()
             require('lualine').setup({
                 options = {
+                    icons_enabled = false,
                     theme = {
                         normal = {
                             a = { fg = '#ffffff', bg = 'NONE' },
@@ -66,6 +67,7 @@ return {
             })
         end,
     },
+    -- harpoon ui
     {
         'letieu/harpoon-lualine',
         dependencies = {

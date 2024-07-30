@@ -8,14 +8,6 @@ return {
             require('nvim-treesitter.configs').setup({
                 highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" }, },
                 indent = { enable = true, },
-                ensure_installed = {
-                    'html',
-                    'javascript',
-                    'typescript',
-                    'tsx',
-                    'c',
-                    'css',
-                },
                 sync_install = false,
                 auto_install = true,
             })
