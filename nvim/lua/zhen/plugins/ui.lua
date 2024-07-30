@@ -11,16 +11,17 @@ return {
                 }
             })
             vim.cmd('colorscheme carbonfox')
+            -- makes everything transparent
             vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
             vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
             vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
             vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
+            vim.cmd('highlight Pmenu guibg=NONE')
         end,
     },
     -- statusline
     {
         'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('lualine').setup({
                 options = {

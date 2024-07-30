@@ -17,7 +17,7 @@ return {
         keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end)
         keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end)
         keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
-        keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
+        keymap.set("n", "<leader>h5", function() harpoon:list():select(5) end)
         keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
         keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
     end
