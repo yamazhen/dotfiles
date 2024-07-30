@@ -62,7 +62,7 @@ return {
                 },
                 sections = {
                     lualine_c = { 'harpoon2' },
-                }
+                },
             })
         end,
     },
