@@ -29,6 +29,8 @@ yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Arknights$" manage=off
 yabai -m rule --add app="^Android Studio$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
+yabai -m rule --add app="IntelliJ IDEA" title="New Project" manage=off
+yabai -m rule --add app="IntelliJ IDEA" title="Settings" manage=off
 
 yabai -m config external_bar all:32:0
 
