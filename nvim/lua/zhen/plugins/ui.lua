@@ -76,5 +76,21 @@ return {
                 branch = 'harpoon2'
             }
         },
+    },
+    -- tabline
+    {
+        'akinsho/bufferline.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        version = '*',
+        opts = {
+            options = {
+                mode = 'buffers',
+                separator_style = 'none',
+                indicator = {
+                    style = 'none',
+                },
+                tab_size = 18,
+            },
+        },
     }
 }
