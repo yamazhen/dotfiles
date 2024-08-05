@@ -5,13 +5,11 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             {'williamboman/mason-lspconfig.nvim'},
-            {'nvim-java/nvim-java'},
         },
         config = function()
             local keymap = vim.keymap
             local lspconfig = require('lspconfig')
             local lombok_jar = "/Users/zhen/.local/share/nvim/mason/bin/lombok.jar"
-            require('java').setup()
             lspconfig.jdtls.setup({
                 cmd = {
                     '/Users/zhen/.local/share/nvim/mason/bin/jdtls',
@@ -40,5 +38,5 @@ return {
             keymap.set("n", "<leader>mD", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
             keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = 'Smart rename' })
         end
-    }
+    },
 }
