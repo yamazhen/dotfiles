@@ -1,0 +1,25 @@
+[general]
+import = [
+    "~/.config/alacritty/keybindings.toml"
+]
+[terminal]
+shell = { program = "/opt/homebrew/bin/tmux", args = ["new-session", "-A", "-s", "default"]}
+[env]
+TERM="xterm-256color"
+[window]
+padding.x = 10
+padding.y = 10
+decorations = "Buttonless"
+startup_mode = "Windowed"
+dynamic_title = true
+
+opacity = 0.9
+blur = true 
+
+option_as_alt = "Both"
+
+[font]
+#normal.family = "Iosevka Nerd Font Mono"
+#normal.style = "Light"
+#bold.style = "Regular"
+size = 16

@@ -1,0 +1,126 @@
+after-login-command = []
+after-startup-command = []
+start-at-login = true
+enable-normalization-flatten-containers = true 
+enable-normalization-opposite-orientation-for-nested-containers = true 
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+key-mapping.preset = 'qwerty'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+[gaps]
+inner.horizontal = 10
+inner.vertical =   10
+outer.left =       10
+outer.bottom =     10
+outer.top =        10
+outer.right =      10
+
+[mode.main.binding]
+alt-enter = 'exec-and-forget open /Applications/Alacritty.app'
+alt-slash = 'layout tiles horizontal vertical'
+alt-f = 'fullscreen'
+# move focus
+alt-left =          'focus --boundaries-action wrap-around-the-workspace left'
+alt-down =          'focus --boundaries-action wrap-around-the-workspace down'
+alt-up =            'focus --boundaries-action wrap-around-the-workspace up'
+alt-right =         'focus --boundaries-action wrap-around-the-workspace right'
+# move windows
+alt-shift-left =    'move left'
+alt-shift-down =    'move down'
+alt-shift-up =      'move up'
+alt-shift-right =   'move right'
+# quick resize
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+# focus workspace 
+alt-1 = 'workspace Terminal'
+alt-2 = 'workspace Editor'
+alt-3 = 'workspace Browser'
+alt-4 = 'workspace Comm'
+alt-5 = 'workspace Music'
+alt-d = 'workspace Desktop'
+alt-p = 'workspace Postman'
+alt-w = 'workspace Workbench'
+alt-s = 'workspace Monitor'
+alt-tab = 'workspace-back-and-forth'
+# move window to workspace
+alt-shift-1 = ['move-node-to-workspace Terminal', "workspace Terminal"]
+alt-shift-2 = ['move-node-to-workspace Editor', "workspace Editor"]
+alt-shift-3 = ['move-node-to-workspace Browser', "workspace Browser"]
+alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]
+alt-shift-5 = ['move-node-to-workspace Music', "workspace Music"]
+alt-shift-d = ['move-node-to-workspace Desktop', "workspace Desktop"]
+alt-shift-p = ['move-node-to-workspace Desktop', "workspace Postman"]
+alt-shift-w = ['move-node-to-workspace Desktop', "workspace Workbench"]
+alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
+
+alt-r = 'mode edit'
+[mode.edit.binding]
+left = 'resize width -50'
+down = 'resize height +50'
+up = 'resize height -50'
+right = 'resize width +50'
+enter = 'mode main'
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+Desktop = 'main'
+Terminal = 'main'
+Editor = 'main'
+Browser = 'main'
+Music = 'main'
+Comm = 'main'
+SMonitor = 'secondary'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = ['move-node-to-workspace Terminal']
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = ['move-node-to-workspace Editor']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = ['move-node-to-workspace Browser']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.FaceTime'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = ['move-node-to-workspace Comm']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace Music']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace Music']
+
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+run = ['move-node-to-workspace Postman']
+
+[[on-window-detected]]
+if.app-id = 'com.oracle.workbench.MySQLWorkbench'
+run = ['move-node-to-workspace Workbench']
