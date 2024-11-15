@@ -5,6 +5,9 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
+opt.ignorecase = true
+opt.smartcase = true
+
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
@@ -34,7 +37,6 @@ opt.clipboard:append('unnamedplus')
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5
 

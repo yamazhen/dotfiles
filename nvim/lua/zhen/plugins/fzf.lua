@@ -5,6 +5,9 @@ return {
         local keymap = vim.keymap
 
         fzf.setup({
+            files = {
+                path_shorten = true,
+            },
             winopts = {
                 preview = {
                     vertical = "down:40%",
