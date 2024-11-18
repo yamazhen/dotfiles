@@ -1,5 +1,6 @@
 [general]
 import = [
+    "~/.config/alacritty/themes/lackluster.toml",
     "~/.config/alacritty/keybindings.toml"
 ]
 [terminal]
@@ -14,8 +15,7 @@ startup_mode = "Windowed"
 dynamic_title = true
 
 opacity = 0.9
-blur = true 
-
+blur = true
 option_as_alt = "Both"
 
 [font]

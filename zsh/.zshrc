@@ -6,6 +6,8 @@ eval "$(zoxide init zsh)"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #my config 
 export PATH="/opt/homebrew/bin:$PATH"
@@ -23,7 +25,6 @@ bindkey '^[[B' history-search-forward
 bindkey '^[[Z' autosuggest-accept
 bindkey '^I' expand-or-complete
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #aliases 
 alias ls="eza -w 60"
