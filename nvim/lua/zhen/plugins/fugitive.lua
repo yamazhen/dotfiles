@@ -1,7 +1,10 @@
 return {
     "tpope/vim-fugitive",
     config = function ()
-        vim.keymap.set("n", "<leader>gg", vim.cmd.Git)
+        vim.keymap.set("n", "<leader>gg", function()
+            vim.cmd("vert Git")
+            vim.cmd("vertical resize 50")
+        end)
 
         local fugitive = vim.api.nvim_create_augroup("Fugitive", {})
 

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Get the current session name
+current_session=$(tmux display-message -p '#S')
+
+# Check if the current session is not "default"
+if [ "$current_session" != "default" ]; then
+    # Switch to the "default" session
+    tmux switch-client -t "default"
+fi
+
+# List all sessions except "default" and the current session
+sessions=$(tmux list-sessions -F '#S' | grep -v '^default$')
+
+# Kill other sessions
+if [ -z "$sessions" ]; then
+    echo "No sessions to kill"
+else
+    echo "$sessions" | while read -r session; do
+        tmux kill-session -t "$session"
+    done
+    echo "All windows killed"
+fi

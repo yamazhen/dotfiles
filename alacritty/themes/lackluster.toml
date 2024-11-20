@@ -1,3 +1,6 @@
+[colors.primary]
+background = '#202020'
+
 [colors.normal]
 black = '#080808'
 red = '#D70000'

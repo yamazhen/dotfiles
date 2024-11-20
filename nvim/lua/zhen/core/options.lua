@@ -14,7 +14,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 
 opt.smartindent = true
-
+opt.breakindent = true
 opt.wrap = false
 
 opt.swapfile = false
@@ -27,13 +27,15 @@ opt.incsearch = true
 
 opt.termguicolors = true
 
-opt.scrolloff = 8
+opt.scrolloff = 10
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
 opt.updatetime = 50
 
-opt.clipboard:append('unnamedplus')
+vim.schedule(function ()
+    opt.clipboard = "unnamedplus"
+end)
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
