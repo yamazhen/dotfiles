@@ -24,6 +24,17 @@ return {
                 keymap.set("n", "<leader>md", vim.diagnostic.open_float, opts)
                 keymap.set("n", '<leader>mD', require('fzf-lua').diagnostics_document, { noremap = true, silent = true })
             end
+            -- diagnostic float
+            vim.diagnostic.config({
+                float = {
+                    focusable = false,
+                    style = "minimal",
+                    border = "rounded",
+                    source = "always",
+                    header = "",
+                    prefix = "",
+                },
+            })
             -- general keymaps
             keymap.set('n', '<leader>mm', '<cmd>Mason<CR>', { desc = 'Open Mason' })
             keymap.set('n', '<leader>ml', '<cmd>LspInstall<CR>', { desc = 'Install LSP for this filetype' })
