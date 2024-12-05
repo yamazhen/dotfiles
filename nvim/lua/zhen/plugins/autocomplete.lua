@@ -24,7 +24,8 @@ return {
                     },
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                    ['<Tab>'] = cmp.mapping.confirm({ select = false }),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 }),
             })
         end,
