@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/lackluster.toml",
+    "~/.config/alacritty/themes/rose-pine-moon.toml",
     "~/.config/alacritty/keybindings.toml"
 ]
 [terminal]

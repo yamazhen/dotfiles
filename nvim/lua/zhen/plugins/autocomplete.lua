@@ -1,27 +1,18 @@
 return {
-    -- autocomplete
     {
         'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
-        dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp'},
-            { 'L3MON4D3/LuaSnip' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'rafamadriz/friendly-snippets' },
-        },
         config = function()
             local cmp = require('cmp')
-            local luasnip = require('luasnip')
-            require('luasnip.loaders.from_vscode').lazy_load()
+
             cmp.setup({
-                mapping = cmp.mapping.preset.insert({
-                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'buffer' },
-                    { name = 'luasnip' },
-                }),
+                sources = {
+                    {name = 'nvim_lsp'},
+                },
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
                 window = {
                     completion = {
                         border = 'rounded',
@@ -32,33 +23,22 @@ return {
                         scrollbar = false,
                     },
                 },
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end,
-                }
+                mapping = cmp.mapping.preset.insert({
+                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                }),
             })
         end,
     },
-    -- autopairs
     {
         'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        config = function()
-            local autopairs = require('nvim-autopairs')
-            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-            local cmp = require('cmp')
-            autopairs.setup({})
-            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-        end,
+        event = "InsertEnter",
+        config = true
     },
     -- autotag
     {
         'windwp/nvim-ts-autotag',
         event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        config = function()
-            require('nvim-ts-autotag').setup({})
-        end,
+        opts = {},
     },
+
 }

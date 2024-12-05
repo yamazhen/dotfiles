@@ -31,7 +31,7 @@ opt.scrolloff = 10
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
-opt.updatetime = 50
+opt.updatetime = 250
 
 vim.schedule(function ()
     opt.clipboard = "unnamedplus"

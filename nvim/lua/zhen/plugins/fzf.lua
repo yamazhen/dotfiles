@@ -5,20 +5,24 @@ return {
         local keymap = vim.keymap
 
         fzf.setup({
-            files = {
-                path_shorten = true,
-            },
             winopts = {
                 preview = {
                     vertical = "down:40%",
                     horizontal = "right:50%"
                 }
             },
+            files = {
+                formatter = "path.filename_first"
+            },
+            buffers = {
+                formatter = "path.filename_first"
+            },
+
         })
 
         -- keymaps
         keymap.set({"n","t"}, '<leader>ff', fzf.files, { noremap = true, silent = true })
-        keymap.set({"n","t"}, '<leader>fs', fzf.grep, { noremap = true, silent = true })
+        keymap.set({"n","t"}, '<leader>fs', fzf.live_grep, { noremap = true, silent = true })
         keymap.set({"n","t"}, '<leader>fg', fzf.git_files, { noremap = true, silent = true })
         keymap.set({"n","t"}, '<leader>fb', fzf.buffers, { noremap = true, silent = true })
         keymap.set({"n","t"}, '<leader>fl', fzf.lsp_workspace_symbols, { noremap = true, silent = true })

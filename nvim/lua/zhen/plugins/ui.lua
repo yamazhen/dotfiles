@@ -1,20 +1,18 @@
 return {
     {
-        'slugbyte/lackluster.nvim',
+        "rose-pine/neovim",
+        name = "rose-pine",
         lazy = false,
         priority = 1000,
-        config = function ()
-            local lackluster = require('lackluster')
-
-            lackluster.setup({
-                tweak_background = {
-                    normal = 'none',
-                    menu = lackluster.color.gray3,
-                    popup = 'default',
+        init = function ()
+            require("rose-pine").setup({
+                styles = {
+                    transparency = true,
+                    italic = false,
                 },
             })
 
-            vim.cmd.colorscheme("lackluster-mint")
+            vim.cmd.colorscheme("rose-pine-moon")
 
             -- transparency fix
             vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
