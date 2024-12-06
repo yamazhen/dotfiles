@@ -31,15 +31,10 @@ opt.scrolloff = 10
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
-opt.updatetime = 250
+opt.updatetime = 50
 
-vim.schedule(function ()
-    opt.clipboard = "unnamedplus"
+vim.schedule(function()
+	opt.clipboard = "unnamedplus"
 end)
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-
-vim.g.bigfile_size = 1024 * 1024 * 1.5
 
 vim.o.cmdheight = 0
