@@ -11,6 +11,11 @@ bindings = [
 { key = "3", mods = "Command", chars = "\u0002\u0033" }, #go to window 3
 { key = "4", mods = "Command", chars = "\u0002\u0034" }, #go to window 4
 { key = "5", mods = "Command", chars = "\u0002\u0035" }, #go to window 5
+{ key = "6", mods = "Command", chars = "\u0002\u0036" }, #go to window 5
+{ key = "7", mods = "Command", chars = "\u0002\u0037" }, #go to window 5
+{ key = "8", mods = "Command", chars = "\u0002\u0038" }, #go to window 5
+{ key = "9", mods = "Command", chars = "\u0002\u0039" }, #go to window 5
+
     # panes
 { key = "\\", mods = "Command", chars = "\u0002\u0025" }, #split vertically
 { key = "-", mods = "Command", chars = "\u0002\u0022" }, #split horizontally 

@@ -6,7 +6,7 @@ return {
 
 		vim.api.nvim_set_keymap(
 			"i",
-			"<leader><<Tab>",
+			"<S-Tab>",
 			'copilot#Accept("\\<CR>")',
 			{ silent = true, expr = true, script = true }
 		)
