@@ -46,7 +46,7 @@ return {
 						},
 					},
 				}
-				local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+				local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 				for k, v in pairs(lsp_capabilities) do
 					capabilities[k] = v
 				end
@@ -59,7 +59,8 @@ return {
 					"-Declipse.product=org.eclipse.jdt.ls.core.product",
 					"-Dlog.protocol=true",
 					"-Dlog.level=ALL",
-					"-Xmx1g",
+					"-Xmx2g",
+					"-XX:+UseG1GC",
 					"--add-modules=ALL-SYSTEM",
 					"--add-opens",
 					"java.base/java.util=ALL-UNNAMED",
