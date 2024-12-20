@@ -11,6 +11,7 @@ return {
 				typescriptreact = { "prettier" },
 				css = { "prettier" },
 				lua = { "stylua" },
+				html = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

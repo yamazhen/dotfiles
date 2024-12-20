@@ -60,7 +60,6 @@ return {
 					"-Dlog.protocol=true",
 					"-Dlog.level=ALL",
 					"-Xmx2g",
-					"-XX:+UseG1GC",
 					"--add-modules=ALL-SYSTEM",
 					"--add-opens",
 					"java.base/java.util=ALL-UNNAMED",
@@ -95,7 +94,7 @@ return {
 							preferred = "fernflower",
 						},
 						saveActions = {
-							organizeImports = true,
+							organizeImports = false,
 						},
 						completion = {
 							favoriteStaticMembers = {

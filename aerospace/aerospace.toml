@@ -12,10 +12,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 [gaps]
 inner.horizontal = 10
 inner.vertical =   10
-outer.left =       25
-outer.bottom =     25
-outer.top =        25
-outer.right =      25
+outer.left =       10
+outer.bottom =     10
+outer.top =        10
+outer.right =      10
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/Alacritty.app'
@@ -46,6 +46,7 @@ alt-w = 'workspace Workbench'
 alt-c = 'workspace ChatGPT'
 alt-s = 'workspace Monitor'
 alt-tab = 'workspace-back-and-forth'
+alt-shift-1 = ['move-node-to-workspace Terminal', "workspace Terminal"]
 alt-shift-2 = ['move-node-to-workspace Editor', "workspace Editor"]
 alt-shift-3 = ['move-node-to-workspace Browser', "workspace Browser"]
 alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]

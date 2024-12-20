@@ -2,7 +2,10 @@ return {
 	{
 		"saghen/blink.cmp",
 		lazy = false,
-		dependencies = { { "rafamadriz/friendly-snippets" }, { "L3MON4D3/LuaSnip", version = "2.*" } },
+		dependencies = {
+			{ "rafamadriz/friendly-snippets" },
+			{ "L3MON4D3/LuaSnip", version = "2.*" },
+		},
 		version = "v0.*",
 		opts = {
 			snippets = {
@@ -24,9 +27,10 @@ return {
 				nerd_font_variant = "mono",
 			},
 			completion = {
-				menu = {
-					border = "single",
+				accept = {
+					auto_brackets = { enabled = true },
 				},
+				menu = { border = "single" },
 				documentation = {
 					auto_show_delay_ms = 0,
 					auto_show = true,
@@ -48,17 +52,24 @@ return {
 					"snippet_forward",
 					"fallback",
 				},
+				["<S-Tab>"] = {
+					function()
+						local copilot = require("copilot.suggestion")
+						if copilot.is_visible() then
+							copilot.accept()
+						end
+					end,
+				},
 				["<Up>"] = { "select_prev", "fallback" },
 				["<Down>"] = { "select_next", "fallback" },
 			},
 			sources = {
-				default = {
-					"luasnip",
-					"lsp",
-				},
-				providers = {
-					snippets = {
-						score_offset = -1,
+				completion = {
+					enabled_providers = {
+						"luasnip",
+						"lsp",
+						"buffer",
+						"path",
 					},
 				},
 			},
@@ -68,7 +79,11 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = true,
+		config = function()
+			require("nvim-autopairs").setup({
+				check_ts = true,
+			})
+		end,
 	},
 	-- autotag
 	{
@@ -76,5 +91,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {},
 	},
+	-- auto indent
 	{ "Darazaki/indent-o-matic" },
 }

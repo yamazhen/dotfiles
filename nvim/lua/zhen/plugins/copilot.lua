@@ -1,14 +1,15 @@
 return {
-	"github/copilot.vim",
+	"zbirenbaum/copilot.lua",
 	config = function()
-		vim.g.copilot_no_tab_map = true
-		vim.g.copilot_assume_mapped = true
-
-		vim.api.nvim_set_keymap(
-			"i",
-			"<S-Tab>",
-			'copilot#Accept("\\<CR>")',
-			{ silent = true, expr = true, script = true }
-		)
+		require("copilot").setup({
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				hide_during_completion = false,
+			},
+			panel = {
+				enabled = false,
+			},
+		})
 	end,
 }

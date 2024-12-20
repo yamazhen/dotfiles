@@ -31,10 +31,15 @@ opt.scrolloff = 10
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
-opt.updatetime = 50
+opt.updatetime = 500
 
 vim.schedule(function()
 	opt.clipboard = "unnamedplus"
 end)
+
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
+opt.cursorline = true
 
 vim.o.cmdheight = 0

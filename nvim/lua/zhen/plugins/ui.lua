@@ -1,16 +1,12 @@
 return {
 	{
-		"EdenEast/nightfox.nvim",
+		"tiagovla/tokyodark.nvim",
 		lazy = false,
 		priority = 1000,
 		init = function()
-			require("nightfox").setup({
-				options = {
-					transparent = true,
-				},
-			})
+			require("tokyodark").setup({})
 
-			vim.cmd.colorscheme("carbonfox")
+			vim.cmd.colorscheme("tokyodark")
 
 			-- transparency fix
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
