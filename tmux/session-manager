@@ -7,7 +7,7 @@ tmux new-window -n "Session Manager" bash -c '
 
     # Use fzf to select a session with custom key bindings
     selected_session=$(echo "$sessions" | fzf --prompt="Select a tmux session: " \
-        --bind="d:execute(tmux kill-session -t {})+reload(tmux list-sessions -F '#S')")
+        --bind="ctrl-d:execute(tmux kill-session -t {})+reload(tmux list-sessions -F '#S')")
 
     # Check if a session was selected
     if [ -n "$selected_session" ]; then
