@@ -64,26 +64,15 @@ return {
 				["<Down>"] = { "select_next", "fallback" },
 			},
 			sources = {
-				completion = {
-					enabled_providers = {
-						"luasnip",
-						"lsp",
-						"buffer",
-						"path",
-					},
+				default = {
+					"snippets",
+					"lsp",
+					"buffer",
+					"path",
 				},
 			},
 		},
 		opts_extend = { "sources.default" },
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup({
-				check_ts = true,
-			})
-		end,
 	},
 	-- autotag
 	{
@@ -91,6 +80,5 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {},
 	},
-	-- auto indent
 	{ "Darazaki/indent-o-matic" },
 }

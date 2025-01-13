@@ -1,5 +1,6 @@
 return {
 	{ "williamboman/mason-lspconfig.nvim" },
+	{ "j-hui/fidget.nvim", opts = {} },
 	{
 		"williamboman/mason.nvim",
 		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
@@ -39,11 +40,20 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-						if server_name == "jdtls" or server_name == "ts_ls" then
+						if server_name == "jdtls" or server_name == "ts_ls" or "cssls" then
 							return
 						end
 						require("lspconfig")[server_name].setup({})
 					end,
+				},
+			})
+			require("lspconfig").cssls.setup({
+				settings = {
+					css = {
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
 				},
 			})
 			-- diagnostics

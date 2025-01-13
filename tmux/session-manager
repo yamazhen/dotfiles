@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Open a new tmux pane to run the fzf-based session manager
+tmux new-window -n "Session Manager" bash -c '
+    # Get a list of tmux sessions
+    sessions=$(tmux list-sessions -F "#S" 2>/dev/null)
+
+    # Use fzf to select a session with custom key bindings
+    selected_session=$(echo "$sessions" | fzf --prompt="Select a tmux session: " \
+        --bind="d:execute(tmux kill-session -t {})+reload(tmux list-sessions -F '#S')")
+
+    # Check if a session was selected
+    if [ -n "$selected_session" ]; then
+        # Attach to the selected session
+        tmux switch-client -t "$selected_session"
+    fi
+
+    # Close the pane immediately after execution
+    tmux kill-pane
+'

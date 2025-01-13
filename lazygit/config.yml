@@ -1,0 +1,25 @@
+gui:
+  keybinding:
+    universal:
+      quit: "<C-c>"
+      return: "<enter>"
+      prevPage: "k"
+      nextPage: "j"
+      search: "/"
+    main:
+      nextItem: "j"
+      prevItem: "k"
+      search: "/"
+      filter: "?"
+    files:
+      nextItem: "j"
+      prevItem: "k"
+    branches:
+      nextItem: "j"
+      prevItem: "k"
+    commits:
+      nextItem: "j"
+      prevItem: "k"
+    stash:
+      nextItem: "j"
+      prevItem: "k"
