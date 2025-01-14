@@ -37,6 +37,10 @@ vim.schedule(function()
 	opt.clipboard = "unnamedplus"
 end)
 
+vim.diagnostic.config({
+	float = { enable = false },
+})
+
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
