@@ -15,7 +15,7 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-						if server_name == "jdtls" or server_name == "ts_ls" or "cssls" then
+						if server_name == "jdtls" or server_name == "ts_ls" or server_name == "cssls" then
 							return
 						end
 						require("lspconfig")[server_name].setup({})
@@ -23,10 +23,26 @@ return {
 				},
 			})
 
-			local custom_configs = { "tailwindcss", "cssls" }
+			local custom_configs = { "tailwindcss", "cssls", "emmet_language_server" }
 			for _, config in ipairs(custom_configs) do
 				local ok, _ = pcall(require, "zhen.plugins.customlsp." .. config)
 			end
+
+			local keymap = vim.keymap.set
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				desc = "LSP actions",
+				callback = function(event)
+					local opts = { buffer = event.buf, noremap = true, silent = true }
+					local fzf = require("fzf-lua")
+					keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
+					keymap("n", "<leader>sr", fzf.lsp_references, opts)
+					keymap("n", "<leader>si", vim.lsp.buf.code_action, opts)
+					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+					keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
+					keymap("n", "<leader>mD", fzf.diagnostics_document, { noremap = true, silent = true })
+				end,
+			})
 		end,
 	},
 	{

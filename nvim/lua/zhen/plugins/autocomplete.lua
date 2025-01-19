@@ -65,8 +65,8 @@ return {
 			},
 			sources = {
 				default = {
-					"snippets",
 					"lsp",
+					"snippets",
 					"buffer",
 					"path",
 				},

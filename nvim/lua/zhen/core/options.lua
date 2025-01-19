@@ -5,6 +5,11 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
+opt.foldmethod = "indent"
+vim.o.foldlevelstart = 99
+vim.o.foldlevel = 99
+vim.o.foldenable = true
+
 opt.ignorecase = true
 opt.smartcase = true
 

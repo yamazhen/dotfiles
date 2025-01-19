@@ -18,9 +18,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "88157521e890fe7fdf18bee22438875edd6300a6" },
   "nvim-treesitter": { "branch": "master", "commit": "306dd6e9dc806db1d79568d26e1c9b6c98b95fbc" },
   "nvim-ts-autotag": { "branch": "main", "commit": "1cca23c9da708047922d3895a71032bc0449c52d" },
-  "nvim-ufo": { "branch": "main", "commit": "32cb247b893a384f1888b9cd737264159ecf183c" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
-  "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "snipe.nvim": { "branch": "main", "commit": "0d0a482ac713370196e4fc0025d5aaac5030104d" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "typescript-tools.nvim": { "branch": "master", "commit": "35e397ce467bedbbbb5bfcd0aa79727b59a08d4a" }
