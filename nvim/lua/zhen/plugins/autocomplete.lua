@@ -80,5 +80,4 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {},
 	},
-	{ "Darazaki/indent-o-matic" },
 }
