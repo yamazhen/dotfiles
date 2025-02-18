@@ -21,6 +21,7 @@ return {
 					css = 2,
 					python = 4,
 					json = 2,
+					jsonc = 2,
 				},
 			})
 		end,

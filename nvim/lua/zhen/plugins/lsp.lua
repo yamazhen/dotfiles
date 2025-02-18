@@ -23,9 +23,9 @@ return {
 				},
 			})
 
-			local custom_configs = { "tailwindcss", "cssls", "emmet_language_server" }
+			local custom_configs = { "tailwindcss", "cssls", "emmet_language_server", "dartls" }
 			for _, config in ipairs(custom_configs) do
-				local ok, _ = pcall(require, "zhen.plugins.customlsp." .. config)
+				local _ = pcall(require, "zhen.plugins.customlsp." .. config)
 			end
 
 			local keymap = vim.keymap.set

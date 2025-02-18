@@ -77,6 +77,19 @@ return {
 	{
 		"windwp/nvim-ts-autotag",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {},
+		config = function()
+			require("nvim-ts-autotag").setup({
+				opts = {
+					enable_close = false,
+					enable_close_on_slash = true,
+				},
+			})
+		end,
+	},
+	-- autopairs
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 }
