@@ -8,6 +8,9 @@ return {
 		},
 		version = "v0.*",
 		opts = {
+			enabled = function()
+				return not vim.tbl_contains({ "snacks_picker_input" }, vim.bo.filetype)
+			end,
 			snippets = {
 				expand = function(snippet)
 					require("luasnip").lsp_expand(snippet)
@@ -27,13 +30,11 @@ return {
 				nerd_font_variant = "mono",
 			},
 			completion = {
-				accept = {
-					auto_brackets = { enabled = true },
-				},
 				menu = { border = "single" },
 				documentation = {
 					auto_show_delay_ms = 0,
 					auto_show = true,
+					treesitter_highlighting = true,
 					window = {
 						border = "single",
 						scrollbar = false,
@@ -76,7 +77,7 @@ return {
 	-- autotag
 	{
 		"windwp/nvim-ts-autotag",
-		event = { "BufReadPre", "BufNewFile" },
+		ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "xml" },
 		config = function()
 			require("nvim-ts-autotag").setup({
 				opts = {

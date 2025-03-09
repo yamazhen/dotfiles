@@ -94,7 +94,7 @@ return {
 							preferred = "fernflower",
 						},
 						saveActions = {
-							organizeImports = false,
+							organizeImports = true,
 						},
 						completion = {
 							favoriteStaticMembers = {

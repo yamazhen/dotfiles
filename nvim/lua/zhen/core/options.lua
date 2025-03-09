@@ -9,6 +9,9 @@ opt.foldmethod = "indent"
 vim.o.foldlevelstart = 99
 vim.o.foldlevel = 99
 vim.o.foldenable = true
+vim.o.conceallevel = 2
+
+opt.fillchars = { eob = " " }
 
 opt.ignorecase = true
 opt.smartcase = true

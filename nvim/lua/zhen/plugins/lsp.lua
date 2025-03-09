@@ -1,10 +1,16 @@
 return {
+	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "j-hui/fidget.nvim", opts = {} },
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("mason").setup({})
+			require("mason").setup({
+				registries = {
+					"github:nvim-java/mason-registry",
+					"github:mason-org/mason-registry",
+				},
+			})
 			local lspconfig_defaults = require("lspconfig").util.default_config
 			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 				"force",
@@ -34,24 +40,23 @@ return {
 				desc = "LSP actions",
 				callback = function(event)
 					local opts = { buffer = event.buf, noremap = true, silent = true }
-					local fzf = require("fzf-lua")
 					keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
-					keymap("n", "<leader>sr", fzf.lsp_references, opts)
 					keymap("n", "<leader>si", vim.lsp.buf.code_action, opts)
 					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 					keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
-					keymap("n", "<leader>mD", fzf.diagnostics_document, { noremap = true, silent = true })
 				end,
 			})
 		end,
 	},
 	{
-		"pmizio/typescript-tools.nvim",
-		ft = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-		opts = {},
-	},
-	{
-		"williamboman/mason.nvim",
-		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
+		"j-hui/fidget.nvim",
+		event = "LspAttach",
+		opts = {
+			notification = {
+				window = {
+					align = "top",
+				},
+			},
+		},
 	},
 }

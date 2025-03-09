@@ -12,16 +12,17 @@ return {
 		config = function()
 			require("indentconfig").setup({
 				filetype = {
-					java = 4,
 					typescriptreact = 2,
 					javascript = 2,
 					typescript = 2,
 					javascriptreact = 2,
 					html = 2,
 					css = 2,
-					python = 4,
 					json = 2,
 					jsonc = 2,
+					dart = 2,
+					swift = 2,
+					yaml = 2,
 				},
 			})
 		end,

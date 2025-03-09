@@ -1,5 +1,5 @@
 return {
 	"nvim-flutter/flutter-tools.nvim",
-	lazy = false,
+	ft = { "dart" },
 	config = true,
 }

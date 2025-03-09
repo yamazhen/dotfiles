@@ -139,3 +139,7 @@ run = ['move-node-to-workspace ChatGPT']
 [[on-window-detected]]
 if.app-id = 'com.oracle.workbench.MySQLWorkbench'
 run = ['move-node-to-workspace Workbench']
+
+[[on-window-detected]]
+if.app-id = 'com.yamazhen.soma'
+run = ['move-node-to-workspace SMonitor']
