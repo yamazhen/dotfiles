@@ -11,6 +11,7 @@ return {
 	},
 	keys = {
 		{ "<leader>ot", "<cmd>ObsidianToday<CR>" },
+		{ "<leader>on", "<cmd>ObsidianNew<CR>" },
 		{ "<leader>oy", "<cmd>ObsidianToday -1<CR>" },
 		{ "<leader>of", "<cmd>ObsidianQuickSwitch<CR>" },
 	},

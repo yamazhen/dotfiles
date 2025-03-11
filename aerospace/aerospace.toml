@@ -37,26 +37,24 @@ alt-shift-right =   'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 # focus workspace 
-alt-1 = 'workspace Terminal'
-alt-2 = 'workspace Editor'
+alt-1 = 'workspace Editor'
+alt-2 = 'workspace Util'
 alt-3 = 'workspace Browser'
 alt-4 = 'workspace Comm'
 alt-5 = 'workspace Music'
 alt-d = 'workspace Desktop'
 alt-p = 'workspace Postman'
 alt-w = 'workspace Workbench'
-alt-c = 'workspace ChatGPT'
 alt-s = 'workspace Monitor'
 alt-tab = 'workspace-back-and-forth'
-alt-shift-1 = ['move-node-to-workspace Terminal', "workspace Terminal"]
-alt-shift-2 = ['move-node-to-workspace Editor', "workspace Editor"]
+alt-shift-1 = ['move-node-to-workspace Editor', "workspace Editor"]
+alt-shift-2 = ['move-node-to-workspace Util', "workspace Util"]
 alt-shift-3 = ['move-node-to-workspace Browser', "workspace Browser"]
 alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]
 alt-shift-5 = ['move-node-to-workspace Music', "workspace Music"]
 alt-shift-d = ['move-node-to-workspace Desktop', "workspace Desktop"]
 alt-shift-p = ['move-node-to-workspace Postman', "workspace Postman"]
 alt-shift-w = ['move-node-to-workspace Workbench', "workspace Workbench"]
-alt-shift-c = ['move-node-to-workspace ChatGPT', "workspace ChatGPT"]
 alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
 
 alt-r = 'mode edit'
@@ -73,8 +71,8 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [workspace-to-monitor-force-assignment]
 Desktop = 'main'
-Terminal = 'main'
 Editor = 'main'
+Util = 'main'
 Browser = 'main'
 Music = 'main'
 Comm = 'main'
@@ -86,14 +84,6 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = ['move-node-to-workspace Terminal']
-
-[[on-window-detected]]
-if.app-id = 'com.jetbrains.intellij'
-run = ['move-node-to-workspace Editor']
-
-[[on-window-detected]]
-if.app-id = 'com.google.android.studio'
 run = ['move-node-to-workspace Editor']
 
 [[on-window-detected]]
@@ -103,6 +93,18 @@ run = ['move-node-to-workspace Browser']
 [[on-window-detected]]
 if.app-id = 'com.apple.FaceTime'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.Word"
+run = ['move-node-to-workspace Util']
+
+[[on-window-detected]]
+if.app-id = "com.apple.Notes"
+run = ['move-node-to-workspace Util']
+
+[[on-window-detected]]
+if.app-id = "com.openai.chat"
+run = ['move-node-to-workspace Util']
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
@@ -133,8 +135,9 @@ if.app-id = 'com.postmanlabs.mac'
 run = ['move-node-to-workspace Postman']
 
 [[on-window-detected]]
-if.app-id = 'com.openai.chat'
-run = ['move-node-to-workspace ChatGPT']
+if.app-id = 'com.kakao.KakaoTalkMac'
+run = ['move-node-to-workspace Comm']
+
 
 [[on-window-detected]]
 if.app-id = 'com.oracle.workbench.MySQLWorkbench'

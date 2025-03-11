@@ -1,16 +1,19 @@
 return {
-	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("mason").setup({
-				registries = {
-					"github:nvim-java/mason-registry",
-					"github:mason-org/mason-registry",
+		"j-hui/fidget.nvim",
+		opts = {
+			notification = {
+				window = {
+					align = "top",
 				},
-			})
+			},
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("mason").setup({})
 			local lspconfig_defaults = require("lspconfig").util.default_config
 			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 				"force",
@@ -49,14 +52,7 @@ return {
 		end,
 	},
 	{
-		"j-hui/fidget.nvim",
-		event = "LspAttach",
-		opts = {
-			notification = {
-				window = {
-					align = "top",
-				},
-			},
-		},
+		"williamboman/mason.nvim",
+		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
 	},
 }
