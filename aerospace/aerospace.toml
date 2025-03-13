@@ -13,7 +13,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 inner.horizontal = 0
 inner.vertical =   0
 outer.left =       0
-outer.bottom =     0
+outer.bottom =     -1
 outer.top =        0
 outer.right =      0
 
@@ -138,10 +138,13 @@ run = ['move-node-to-workspace Postman']
 if.app-id = 'com.kakao.KakaoTalkMac'
 run = ['move-node-to-workspace Comm']
 
-
 [[on-window-detected]]
 if.app-id = 'com.oracle.workbench.MySQLWorkbench'
 run = ['move-node-to-workspace Workbench']
+
+[[on-window-detected]]
+if.app-id = 'com.github.Electron'
+run = ['move-node-to-workspace Util']
 
 [[on-window-detected]]
 if.app-id = 'com.yamazhen.soma'
