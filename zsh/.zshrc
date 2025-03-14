@@ -35,6 +35,7 @@ alias ls="eza -w 60"
 alias cd="z"
 alias mvni="mvn -T 1C clean install -DskipTests"
 alias springbuildcore="cd solvway-core-libs && mvn -T 1C clean install -DskipTests && cd .. && cd solvway-core-session && mvn -T 1C clean install -DskipTests && cd .."
+source ~/.important/private_aliases
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
