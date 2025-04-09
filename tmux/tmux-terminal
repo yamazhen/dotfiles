@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Name of the target window
+TARGET_WINDOW="terminal"
+
+# Check if a window named "terminal" exists
+if tmux select-window -t "$TARGET_WINDOW" 2>/dev/null; then
+    # If it exists, switch to it
+    tmux select-window -t "$TARGET_WINDOW"
+else
+    # If it doesn't exist, create a new window named "terminal"
+    tmux new-window -n "$TARGET_WINDOW"
+fi
