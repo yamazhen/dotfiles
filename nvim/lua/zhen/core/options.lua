@@ -5,11 +5,15 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
-opt.foldmethod = "indent"
+opt.foldmethod = "expr"
+vim.o.foldtext = ""
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99
 vim.o.foldlevel = 99
 vim.o.foldenable = true
 vim.o.conceallevel = 2
+
+vim.o.winborder = "single"
 
 opt.fillchars = { eob = " " }
 
@@ -20,7 +24,6 @@ opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
-
 opt.smartindent = true
 opt.breakindent = true
 opt.wrap = false

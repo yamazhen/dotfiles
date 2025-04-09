@@ -1,14 +1,12 @@
 return {
 	{
-		"autotemplate",
-		dir = "~/personal/autotemplate",
+		"yamazhen/autotemplate.nvim",
 		config = function()
 			require("autotemplate").setup()
 		end,
 	},
 	{
-		"indentconfig",
-		dir = "~/personal/indentconfig.nvim",
+		"yamazhen/indentconf.nvim",
 		config = function()
 			require("indentconfig").setup({
 				filetype = {

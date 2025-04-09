@@ -4,7 +4,6 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 keymap("n", "<leader>z", "za", opts)
-keymap("x", "<leader>p", [["_dP]], opts)
 keymap("n", "<leader><Left>", "<C-o>", opts)
 keymap("n", "<leader><Right>", "<C-i>", opts)
 keymap("n", "<leader>mp", "ggVG=", opts)

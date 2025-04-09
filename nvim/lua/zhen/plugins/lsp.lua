@@ -1,17 +1,18 @@
 return {
-	{ "williamboman/mason-lspconfig.nvim" },
 	{
-		"j-hui/fidget.nvim",
-		opts = {
-			notification = {
-				window = {
-					align = "top",
-				},
-			},
-		},
+		"williamboman/mason.nvim",
+		lazy = false,
+		priority = 100,
+		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
 	},
+	{ "williamboman/mason-lspconfig.nvim", event = { "VeryLazy" }, dependencies = { "williamboman/mason.nvim" } },
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
 			require("mason").setup({})
 			local lspconfig_defaults = require("lspconfig").util.default_config
@@ -20,6 +21,10 @@ return {
 				lspconfig_defaults.capabilities,
 				require("blink.cmp").get_lsp_capabilities()
 			)
+
+			vim.diagnostic.config({
+				virtual_text = true,
+			})
 
 			require("mason-lspconfig").setup({
 				handlers = {
@@ -44,7 +49,6 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf, noremap = true, silent = true }
 					keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
-					keymap("n", "<leader>si", vim.lsp.buf.code_action, opts)
 					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 					keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
 				end,
@@ -52,7 +56,15 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason.nvim",
-		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
+		"j-hui/fidget.nvim",
+		event = { "LspAttach" },
+		opts = {
+			notification = {
+				window = {
+					align = "top",
+					winblend = 0,
+				},
+			},
+		},
 	},
 }

@@ -1,16 +1,43 @@
 return {
 	"ibhagwan/fzf-lua",
+	cmd = "FzfLua",
+	keys = {
+		{
+			"<leader>ff",
+			function()
+				require("fzf-lua").files()
+			end,
+			desc = "Find Files",
+		},
+		{
+			"<leader>fb",
+			function()
+				require("fzf-lua").buffers()
+			end,
+			desc = "Find Buffers",
+		},
+		{
+			"<leader>fs",
+			function()
+				require("fzf-lua").live_grep()
+			end,
+			desc = "Live Grep",
+		},
+		{
+			"<leader>sr",
+			function()
+				require("fzf-lua").lsp_references()
+			end,
+			desc = "LSP References",
+		},
+	},
 	config = function()
-		local fzf = require("fzf-lua")
-		local keymap = vim.keymap.set
-
-		fzf.setup({
+		require("fzf-lua").setup({
 			winopts = {
 				height = 0.6,
 				width = 0.6,
 				row = 0.6,
 				col = 0.6,
-				border = "single",
 				preview = { hidden = "hidden" },
 			},
 			file_icon_padding = "",
@@ -26,11 +53,5 @@ return {
 				formatter = "path.filename_first",
 			},
 		})
-
-		-- keymaps
-		local opts = { noremap = true, silent = true }
-		keymap({ "n", "t" }, "<leader>ff", fzf.files, opts)
-		keymap({ "n", "t" }, "<leader>fs", fzf.live_grep, opts)
-		keymap({ "n", "t" }, "<leader>sr", fzf.lsp_references, opts)
 	end,
 }

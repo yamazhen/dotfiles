@@ -4,6 +4,9 @@ local keymap = vim.keymap.set
 
 local function disablePicker()
 	keymap({ "n", "v" }, "<leader>ff", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>fs", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>fb", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>sr", "<nop>", opts)
 end
 
 local function quit()
@@ -25,14 +28,6 @@ autocmd("FileType", {
 	pattern = "oil",
 	callback = function()
 		keymap("n", "q", forceQuit, opts)
-		disablePicker()
-	end,
-})
-
-autocmd("FileType", {
-	pattern = "snipe-menu",
-	callback = function()
-		keymap("n", "q", quit, opts)
 		disablePicker()
 	end,
 })
