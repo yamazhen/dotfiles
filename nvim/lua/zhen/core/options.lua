@@ -5,9 +5,8 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
-opt.foldmethod = "expr"
+opt.foldmethod = "indent"
 vim.o.foldtext = ""
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99
 vim.o.foldlevel = 99
 vim.o.foldenable = true
