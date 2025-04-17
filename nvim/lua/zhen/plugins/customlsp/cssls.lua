@@ -1,6 +1,4 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.cssls.setup({
+vim.lsp.config("cssls", {
 	settings = {
 		css = {
 			lint = {
@@ -9,3 +7,5 @@ lspconfig.cssls.setup({
 		},
 	},
 })
+
+vim.lsp.enable("cssls")

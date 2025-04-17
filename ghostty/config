@@ -1,7 +1,7 @@
 font-family = JetBrainsMono Nerd Font Mono
 font-style = Regular
 font-size = 15
-theme = midnight
+theme = ayu-dark
 cursor-style = block
 cursor-style-blink = false
 window-decoration = false

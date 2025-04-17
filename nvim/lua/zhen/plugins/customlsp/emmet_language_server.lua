@@ -1,6 +1,4 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.emmet_language_server.setup({
+vim.lsp.config("emmet_language_server", {
 	filetypes = { "html", "css", "typescriptreact", "javascriptreact" },
 	settings = {
 		emmet = {
@@ -15,3 +13,4 @@ lspconfig.emmet_language_server.setup({
 		},
 	},
 })
+vim.lsp.enable("emmet_language_server")

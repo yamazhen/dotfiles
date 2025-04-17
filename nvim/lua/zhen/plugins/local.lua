@@ -21,6 +21,7 @@ return {
 					dart = 2,
 					swift = 2,
 					yaml = 2,
+					c = 2,
 				},
 			})
 		end,

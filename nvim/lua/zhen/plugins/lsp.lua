@@ -1,70 +1,52 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		priority = 100,
-		opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
-	},
-	{ "williamboman/mason-lspconfig.nvim", event = { "VeryLazy" }, dependencies = { "williamboman/mason.nvim" } },
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
+	"williamboman/mason-lspconfig.nvim",
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		{
 			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
 		},
-		config = function()
-			require("mason").setup({})
-			local lspconfig_defaults = require("lspconfig").util.default_config
-			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-				"force",
-				lspconfig_defaults.capabilities,
-				require("blink.cmp").get_lsp_capabilities()
-			)
+		"neovim/nvim-lspconfig",
+	},
+	init = function()
+		local lspConfigPath = require("lazy.core.config").options.root .. "/nvim-lspconfig"
+		vim.opt.runtimepath:append(lspConfigPath)
 
-			vim.diagnostic.config({
-				virtual_text = true,
-			})
+		local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						if server_name == "jdtls" or server_name == "ts_ls" or server_name == "cssls" then
-							return
-						end
-						require("lspconfig")[server_name].setup({})
-					end,
-				},
-			})
+		local skip_servers = {
+			"jdtls",
+			"ts_ls",
+			"cssls",
+			"emmet_language_server",
+			"tailwindcss",
+		}
 
-			local custom_configs = { "tailwindcss", "cssls", "emmet_language_server", "dartls" }
-			for _, config in ipairs(custom_configs) do
-				local _ = pcall(require, "zhen.plugins.customlsp." .. config)
-			end
-
-			local keymap = vim.keymap.set
-
-			vim.api.nvim_create_autocmd("LspAttach", {
-				desc = "LSP actions",
-				callback = function(event)
-					local opts = { buffer = event.buf, noremap = true, silent = true }
-					keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
-					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
+		require("mason").setup({})
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					if vim.tbl_contains(skip_servers, server_name) then
+						return
+					end
+					vim.lsp.config(server_name, {
+						capabilities = blink_capabilities,
+					})
+					vim.lsp.enable(server_name)
 				end,
-			})
-		end,
-	},
-	{
-		"j-hui/fidget.nvim",
-		event = { "LspAttach" },
-		opts = {
-			notification = {
-				window = {
-					align = "top",
-					winblend = 0,
-				},
 			},
-		},
-	},
+		})
+		require("zhen.plugins.customlsp")
+
+		local keymap = vim.keymap.set
+		vim.api.nvim_create_autocmd("LspAttach", {
+			desc = "LSP actions",
+			callback = function(event)
+				local opts = { buffer = event.buf, noremap = true, silent = true }
+				keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
+				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+				keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
+			end,
+		})
+	end,
 }
