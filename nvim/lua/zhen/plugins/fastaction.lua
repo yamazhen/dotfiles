@@ -6,6 +6,7 @@ return {
 			border = "single",
 			title = nil,
 		},
+		register_ui_select = true,
 	},
 	keys = {
 		{ "<leader>si", "<cmd>lua require('fastaction').code_action()<cr>", desc = "Fast Action" },
