@@ -1,4 +1,5 @@
 vim.lsp.config("tailwindcss", {
+	cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"typescriptreact",
 		"typescript",
@@ -8,28 +9,13 @@ vim.lsp.config("tailwindcss", {
 		"scss",
 		"html",
 		"vue",
+		"svelte",
+		"astro",
 	},
-	root_dir = function(fname)
-		local match = vim.fs.find("package.json", {
-			upward = true,
-			path = vim.fs.dirname(fname),
-		})[1]
-
-		if match then
-			return vim.fs.dirname(match)
-		end
-
-		return nil
-	end,
+	root_markers = { "tailwind.config.js", "tailwind.config.ts", "package.json", ".git" },
 	settings = {
 		tailwindCSS = {
-			experimental = {
-				classRegex = {
-					"tw`([^`]*)",
-					'tw="([^"]*)',
-					'className="([^"]*)',
-				},
-			},
+			validate = true,
 		},
 	},
 })
