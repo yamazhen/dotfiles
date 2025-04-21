@@ -16,6 +16,14 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/emulator:$PATH
 export PATH="$PATH:$HOME/.config/tmux"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:-1,fg+:#53bdfa,bg:-1,bg+:#0b0e14
+  --color=hl:#1b3a5b,hl+:#53bdfa,info:#afaf87,marker:#53bdfa
+  --color=prompt:#f9af4f,spinner:#7fd962,pointer:#ffffff,header:#c7c7c7
+  --color=border:#262626,label:#aeaeae,query:#d9d9d9
+  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="$ "
+  --marker=">" --pointer="" --separator="─" --scrollbar="│"
+  --layout="reverse" --info="right"'
 
 # history setup
 export HISTFILE=$ZDOTDIR/.zsh_history

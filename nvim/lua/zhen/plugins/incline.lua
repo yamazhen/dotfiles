@@ -9,8 +9,10 @@ return {
 
 				local icon = "\u{f15b}"
 
+				local dot_color = props.focused and "#1e232b" or "#f9af4f"
+
 				if modified then
-					return { icon, " ", filename, { " ●", guifg = "#7fd962" } }
+					return { icon, " ", filename, { " ●", guifg = dot_color } }
 				else
 					return { icon, " ", filename }
 				end
@@ -19,6 +21,12 @@ return {
 				margin = { horizontal = 0, vertical = 0 },
 				padding = 1,
 				placement = { horizontal = "right", vertical = "top" },
+			},
+			highlight = {
+				groups = {
+					InclineNormal = { guibg = "#f9af4f", guifg = "#1e232b" },
+					InclineNormalNC = { guibg = "none", guifg = "#f9af4f" },
+				},
 			},
 		})
 	end,
