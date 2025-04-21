@@ -2,7 +2,12 @@ return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require("conform").setup({
+		local conform = require("conform")
+		conform.formatters["sql-formatter"] = {
+			command = "sql-formatter",
+			args = { "-l", "sqlite" },
+		}
+		conform.setup({
 			formatters_by_ft = {
 				python = { "black" },
 				javascript = { "prettier" },
@@ -13,6 +18,7 @@ return {
 				lua = { "stylua" },
 				html = { "prettier" },
 				json = { "prettier" },
+				sql = { "sql-formatter" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

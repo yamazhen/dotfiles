@@ -8,4 +8,4 @@ window-decoration = false
 command = /opt/homebrew/bin/tmux new-session -A -s default
 window-padding-balance = true
 macos-window-shadow = false
-adjust-cell-height = 4
+adjust-cell-height = 3

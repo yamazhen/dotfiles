@@ -56,4 +56,5 @@ opt.fileencoding = "utf-8"
 
 opt.cursorline = true
 
+vim.o.laststatus = 0
 vim.o.cmdheight = 0

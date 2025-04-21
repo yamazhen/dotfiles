@@ -22,6 +22,7 @@ return {
 					swift = 2,
 					yaml = 2,
 					c = 2,
+					sql = 2,
 				},
 			})
 		end,
