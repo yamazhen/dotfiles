@@ -11,7 +11,7 @@ return {
 		vim.cmd("highlight WinSeparator guifg=#1e232b guibg=NONE")
 
 		-- Set inactive line numbers lighter
-		vim.api.nvim_set_hl(0, "LineNr", { fg = "#bfbdb6" })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff" })
 
 		-- same color as tmux
 		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#bfbdb6" })
