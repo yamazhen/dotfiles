@@ -18,6 +18,14 @@ return {
 			panel = {
 				enabled = false,
 			},
+			server_opts_overrides = {
+				settings = {
+					advanced = {
+						inlineSuggestCount = 1,
+						listCount = 0,
+					},
+				},
+			},
 		})
 	end,
 }

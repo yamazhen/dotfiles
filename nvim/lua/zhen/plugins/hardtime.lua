@@ -10,7 +10,7 @@ return {
 		notification = true,
 		callback = function(text)
 			require("fidget").notify(text, vim.log.levels.WARN, {
-				timeout = 5000,
+				timeout = 2000,
 			})
 		end,
 	},
