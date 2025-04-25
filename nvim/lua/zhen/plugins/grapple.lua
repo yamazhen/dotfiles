@@ -4,6 +4,7 @@ return {
 		scope = "git",
 		icons = false,
 		status = false,
+		style = "basename",
 	},
 	keys = {
 		{ "<leader>a", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },

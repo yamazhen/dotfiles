@@ -2,7 +2,7 @@ return {
 	"m4xshen/hardtime.nvim",
 	dependencies = { "MunifTanjim/nui.nvim" },
 	opts = {
-		disabled_filetypes = { "lazy", "mason", "oil" },
+		disabled_filetypes = { "lazy", "mason", "oil", "grapple" },
 		max_time = 1000,
 		max_count = 2,
 		disable_mouse = true,

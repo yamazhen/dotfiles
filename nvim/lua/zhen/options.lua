@@ -41,6 +41,8 @@ opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
+opt.numberwidth = 2
+
 opt.updatetime = 500
 
 vim.schedule(function()

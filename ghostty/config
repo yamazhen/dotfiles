@@ -1,4 +1,4 @@
-font-family = JetBrainsMono Nerd Font Mono
+font-family = IosevkaTermSlab Nerd Font
 font-style = Regular
 font-size = 15
 theme = ayu-dark
@@ -6,6 +6,7 @@ cursor-style = block
 cursor-style-blink = false
 window-decoration = false
 command = /opt/homebrew/bin/tmux new-session -A -s default
-window-padding-balance = true
+window-padding-balance = false
+window-padding-x = 0
+window-padding-y = 0
 macos-window-shadow = false
-adjust-cell-height = 3
