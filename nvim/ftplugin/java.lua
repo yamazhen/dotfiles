@@ -51,19 +51,13 @@ local cmd = {
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
 	"-Dlog.protocol=true",
-	"-Dlog.level=INFO",
-	"-Xms256m",
+	"-Dlog.level=ALL",
 	"-Xmx1g",
-	"-XX:+UseParallelGC",
-	"-XX:GCTimeRatio=4",
-	"-XX:AdaptiveSizePolicyWeight=90",
 	"--add-modules=ALL-SYSTEM",
 	"--add-opens",
 	"java.base/java.util=ALL-UNNAMED",
 	"--add-opens",
 	"java.base/java.lang=ALL-UNNAMED",
-	"--add-opens",
-	"java.base/sun.nio.fs=ALL-UNNAMED",
 	"-javaagent:" .. lombok,
 	"-jar",
 	launcher,
@@ -78,7 +72,8 @@ local settings = {
 		format = {
 			enabled = true,
 			settings = {
-				url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+				url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+				profile = "GoogleStyle",
 			},
 		},
 		eclipse = {
@@ -86,31 +81,15 @@ local settings = {
 		},
 		maven = {
 			downloadSources = true,
-			updateSnapshots = true,
 		},
 		signatureHelp = {
 			enabled = true,
-			description = {
-				enabled = true,
-			},
 		},
 		contentProvider = {
 			preferred = "fernflower",
 		},
 		saveActions = {
 			organizeImports = true,
-		},
-		import = {
-			maven = {
-				enabled = true,
-			},
-			exclusions = {
-				"*/test/**",
-				"**/node_modules/**",
-				"**/.metadata/**",
-				"**/archetype-resources/**",
-				"**/META-INF/maven/**",
-			},
 		},
 		completion = {
 			filteredTypes = {
@@ -120,19 +99,13 @@ local settings = {
 				"jdk.*",
 				"sun.*",
 			},
-			mportOrder = {
+			importOrder = {
 				"java",
 				"jakarta",
-				"org.springframework",
-				"org",
-				"com",
-				"lombok",
 				"javax",
-				"",
-				"#",
+				"com",
+				"org",
 			},
-			enabled = true,
-			guessMethodArguments = true,
 		},
 		sources = {
 			organizeImports = {
@@ -143,36 +116,21 @@ local settings = {
 		codeGeneration = {
 			toString = {
 				template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-				codeStyle = "STRING_BUILDER_CHAINED",
 			},
 			hashCodeEquals = {
 				useJava7Objects = true,
-				useInstanceof = true,
 			},
 			useBlocks = true,
 		},
 		configuration = {
-			maven = {
-				notCoveredPluginExecutionSeverity = "warning",
-			},
-			runtimes = {
-				{
-					name = "JavaSE-21",
-					path = "/Users/zhen/.sdkman/candidates/java/21.0.5-amzn",
-					default = true,
-				},
-			},
-			updateBuildConfiguration = "automatic",
+			updateBuildConfiguration = "interactive",
+		},
+		referencesCodeLens = {
+			enabled = true,
 		},
 		inlayHints = {
 			parameterNames = {
 				enabled = "all",
-			},
-		},
-		maxConcurrentBuilds = 2,
-		errors = {
-			incompleteClasspath = {
-				severity = "warning",
 			},
 		},
 	},

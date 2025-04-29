@@ -1,6 +1,9 @@
 return {
 	"b0o/incline.nvim",
 	config = function()
+		local highlight_color = "#f3be7c"
+		local background_color = "#141415"
+
 		require("incline").setup({
 			render = function(props)
 				local bufname = vim.api.nvim_buf_get_name(props.buf)
@@ -9,7 +12,7 @@ return {
 
 				local icon = "\u{f15b}"
 
-				local dot_color = props.focused and "#1e232b" or "#f9af4f"
+				local dot_color = props.focused and background_color or highlight_color
 
 				if modified then
 					return { icon, " ", filename, { " ●", guifg = dot_color } }
@@ -24,8 +27,8 @@ return {
 			},
 			highlight = {
 				groups = {
-					InclineNormal = { guibg = "#f9af4f", guifg = "#1e232b" },
-					InclineNormalNC = { guibg = "none", guifg = "#f9af4f" },
+					InclineNormal = { guibg = highlight_color, guifg = background_color },
+					InclineNormalNC = { guibg = "none", guifg = highlight_color },
 				},
 			},
 		})

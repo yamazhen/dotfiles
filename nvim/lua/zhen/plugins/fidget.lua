@@ -10,7 +10,7 @@ return {
 					jdtls = { name = "Java" },
 				},
 				format_message = function(msg)
-					if msg.message and #msg.message > 50 then
+					if msg.message and #msg.message > 30 then
 						return msg.message:sub(1, 47) .. "..."
 					end
 					return msg.message
