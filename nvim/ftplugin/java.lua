@@ -22,8 +22,8 @@ local function get_jdtls_paths()
 	return launcher, config, lombok_path
 end
 
-local function get_workspace()
-	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local function get_workspace(root_dir)
+	local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 	return os.getenv("HOME") .. "/jdtls/workspace/" .. project_name
 end
 
@@ -40,7 +40,7 @@ capabilities.textDocument.completion = capabilities.textDocument.completion or {
 capabilities.textDocument.completion.snippetSupport = false
 
 local launcher, os_config, lombok = get_jdtls_paths()
-local workspace_dir = get_workspace()
+local workspace_dir = get_workspace(root_dir)
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true

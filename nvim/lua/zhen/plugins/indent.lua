@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	main = "ibl",
 	config = function()
-		vim.api.nvim_set_hl(0, "IblScope", { fg = "#f3be7c" })
+		vim.api.nvim_set_hl(0, "IblScope", { fg = "#ffffff" })
 
 		require("ibl").setup({
 			indent = { char = "│" },

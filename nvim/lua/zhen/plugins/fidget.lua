@@ -17,5 +17,8 @@ return {
 				end,
 			},
 		},
+		notification = {
+			override_vim_notify = true,
+		},
 	},
 }

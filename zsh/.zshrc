@@ -16,6 +16,7 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/emulator:$PATH
 export PATH="$PATH:$HOME/.config/tmux"
+export LESSKEY="$HOME/.config/zsh/.lesskey"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:-1,fg+:#6e94b2,bg:-1,bg+:#141415
   --color=hl:#333738,hl+:#6e94b2,info:#606079,marker:#6e94b2

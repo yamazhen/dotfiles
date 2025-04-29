@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH="$(realpath "${BASH_SOURCE[0]}")"
+DB_DIR="$HOME/.important/database"
+
+if [[ -n "${TMUX:-}" ]] && ! test -t 0; then
+  if tmux list-windows -F "#{window_name}" | grep -xq database; then
+    tmux select-window -t database
+  else
+    tmux new-window -n database "bash \"$SCRIPT_PATH\""
+  fi
+  exit 0
+fi
+
+if [[ -z "${TMUX:-}" ]]; then
+  if tmux has-session -t database 2>/dev/null; then
+    tmux attach-session -t database
+  else
+    tmux new-session -d -s database -n database "bash \"$SCRIPT_PATH\""
+    tmux attach-session -t database
+  fi
+  exit 0
+fi
+
+selected=$(find "$DB_DIR" -maxdepth 1 -type f -name '*.sh' \
+           | fzf --height 20% --reverse --ansi \
+                 --prompt="Choose DB> " \
+                 --preview='head -n 30 {}') \
+           || exit 0
+[[ -z "$selected" ]] && exit 0
+
+exec bash "$selected"
