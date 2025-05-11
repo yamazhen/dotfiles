@@ -21,12 +21,16 @@ return {
 				require("luasnip").jump(direction)
 			end,
 		},
-		fuzzy = { implementation = "prefer_rust_with_warning" },
+		fuzzy = {
+			implementation = "rust",
+			use_frecency = true,
+			use_unsafe_no_lock = false,
+			sorts = { "exact", "score", "sort_text" },
+		},
 		completion = {
 			documentation = {
 				auto_show_delay_ms = 1000,
 				auto_show = true,
-				treesitter_highlighting = false,
 				window = {
 					scrollbar = true,
 				},

@@ -16,7 +16,7 @@ return {
 
 		local skip_servers = {
 			"jdtls",
-			"ts_ls",
+			"tsserver",
 			"cssls",
 			"emmet_language_server",
 			"tailwindcss",

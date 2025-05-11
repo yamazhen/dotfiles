@@ -123,6 +123,10 @@ if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace Music']
 
 [[on-window-detected]]
+if.app-id = 'com.Apple.music'
+run = ['layout floating', 'move-node-to-workspace Music']
+
+[[on-window-detected]]
 if.app-id = 'com.codeweavers.CrossOver'
 run = ['move-node-to-workspace Desktop']
 

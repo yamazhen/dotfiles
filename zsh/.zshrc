@@ -1,5 +1,7 @@
 #oh-my-zsh setup
 export ZSH="$HOME/.oh-my-zsh"
+export DISABLE_AUTO_UPDATE="true"
+export DISABLE_UPDATE_PROMPT="true"
 ZSH_THEME="robbyrussell"
 
 eval "$(zoxide init zsh)"

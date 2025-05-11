@@ -4,9 +4,9 @@ return {
 	opts = {
 		jsx_close_tag = {
 			enable = true,
+			filetypes = { "javascriptreact", "typescriptreact" },
 		},
-		separate_diagnostic_server = true,
-		complete_function_calls = true,
+		expose_as_code_actio = { "all" },
 		tsserver_file_preferences = {
 			autoImportFileExcludePatterns = { "node_modules/*" },
 		},
