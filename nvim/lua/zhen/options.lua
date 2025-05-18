@@ -1,18 +1,17 @@
 local opt = vim.opt
+local o = vim.o
 
 opt.guicursor = ""
 
 opt.nu = true
 opt.relativenumber = true
 
-opt.foldmethod = "indent"
-vim.o.foldtext = ""
-vim.o.foldlevelstart = 99
-vim.o.foldlevel = 99
-vim.o.foldenable = true
-vim.o.conceallevel = 2
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldenable = true
+opt.foldlevel = 99
 
-vim.o.winborder = "single"
+o.winborder = "single"
 
 opt.fillchars = { eob = " " }
 
@@ -27,6 +26,8 @@ opt.smartindent = true
 opt.breakindent = true
 opt.wrap = false
 
+opt.colorcolumn = "80"
+
 opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -37,7 +38,6 @@ opt.incsearch = true
 
 opt.termguicolors = true
 
-opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
@@ -58,7 +58,6 @@ opt.fileencoding = "utf-8"
 
 opt.cursorline = true
 
-vim.o.laststatus = 0
-vim.o.cmdheight = 0
+o.cmdheight = 0
 
 opt.autowriteall = true

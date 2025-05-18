@@ -2,23 +2,25 @@ return {
 	"j-hui/fidget.nvim",
 	opts = {
 		progress = {
-			ignore_empty_message = true,
 			display = {
-				render_limit = 3,
-				done_ttl = 2,
-				overrides = {
-					jdtls = { name = "Java" },
-				},
-				format_message = function(msg)
-					if msg.message and #msg.message > 30 then
-						return msg.message:sub(1, 47) .. "..."
-					end
-					return msg.message
-				end,
+				render_limit = 0,
 			},
 		},
 		notification = {
 			override_vim_notify = true,
+			window = {
+				align = "top",
+				relative = "editor",
+			},
+			view = {
+				render_message = function(msg, cnt)
+					local content = type(msg) == "string" and msg or tostring(msg)
+					if #content > 30 then
+						content = content:sub(1, 27) .. "..."
+					end
+					return cnt == 1 and content or string.format("(%dx) %s", cnt, content)
+				end,
+			},
 		},
 	},
 }

@@ -47,3 +47,28 @@ autocmd("FileType", {
 		vim.opt_local.linebreak = true
 	end,
 })
+
+local two_indent = {
+	"typescriptreact",
+	"javascript",
+	"typescript",
+	"javascriptreact",
+	"html",
+	"css",
+	"json",
+	"jsonc",
+	"dart",
+	"swift",
+	"yaml",
+	"c",
+	"sql",
+}
+
+autocmd("FileType", {
+	pattern = two_indent,
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 2
+	end,
+})

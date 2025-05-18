@@ -1,42 +1,21 @@
 return {
-	"williamboman/mason-lspconfig.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	"neovim/nvim-lspconfig",
 	dependencies = {
 		{
 			"williamboman/mason.nvim",
-			opts = { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } },
+			opts = {
+				registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" },
+			},
 		},
-		"neovim/nvim-lspconfig",
+		"mason-org/mason-lspconfig.nvim",
 	},
-	init = function()
-		local lspConfigPath = require("lazy.core.config").options.root .. "/nvim-lspconfig"
-		vim.opt.runtimepath:append(lspConfigPath)
-
-		local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
-
-		local skip_servers = {
-			"jdtls",
-			"tsserver",
-			"cssls",
-			"emmet_language_server",
-			"tailwindcss",
-		}
-
-		require("mason").setup({})
+	config = function()
+		require("mason").setup()
 		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					if vim.tbl_contains(skip_servers, server_name) then
-						return
-					end
-					vim.lsp.config(server_name, {
-						capabilities = blink_capabilities,
-					})
-					vim.lsp.enable(server_name)
-				end,
+			automatic_enable = {
+				exclude = { "ts_ls" },
 			},
 		})
-		require("zhen.plugins.customlsp")
 
 		local keymap = vim.keymap.set
 		vim.api.nvim_create_autocmd("LspAttach", {

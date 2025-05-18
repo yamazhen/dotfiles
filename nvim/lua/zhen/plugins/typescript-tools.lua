@@ -6,7 +6,10 @@ return {
 			enable = true,
 			filetypes = { "javascriptreact", "typescriptreact" },
 		},
-		expose_as_code_actio = { "all" },
+		expose_as_code_action = { "all" },
+		tsserver_plugins = {
+			"typescript-styled-plugin",
+		},
 		tsserver_file_preferences = {
 			autoImportFileExcludePatterns = { "node_modules/*" },
 		},

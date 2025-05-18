@@ -1,5 +1,4 @@
 local jdtls = require("jdtls")
-local mason_registry = require("mason-registry")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
@@ -11,11 +10,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local function get_jdtls_paths()
-	local jdtls_pkg = mason_registry.get_package("jdtls")
-	local lombok_pkg = mason_registry.get_package("lombok-nightly")
-
-	local jdtls_path = jdtls_pkg:get_install_path()
-	local lombok_path = lombok_pkg:get_install_path() .. "/lombok.jar"
+	-- hard coded path for now because mason-registry is not working
+	local jdtls_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls")
+	local lombok_path = vim.fn.expand("~/.local/share/nvim/mason/packages/lombok-nightly/lombok.jar")
 
 	local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 	local config = jdtls_path .. "/config_mac"

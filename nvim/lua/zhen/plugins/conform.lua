@@ -9,22 +9,21 @@ return {
 		}
 		conform.setup({
 			formatters_by_ft = {
-				python = { "black" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
+				javascript = { "biome" },
+				typescript = { "biome" },
+				javascriptreact = { "biome" },
+				typescriptreact = { "biome" },
 				css = { "prettier" },
 				lua = { "stylua" },
 				html = { "prettier" },
-				json = { "prettier" },
+				json = { "biome" },
 				sql = { "sql-formatter" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_format = "fallback",
 			},
-			notify_on_error = false,
+			notify_on_error = true,
 		})
 	end,
 }

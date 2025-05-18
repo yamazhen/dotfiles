@@ -1,68 +1,33 @@
 return {
 	"saghen/blink.cmp",
-	version = "*",
-	event = { "InsertEnter", "CmdlineEnter" },
+	version = "1.*",
 	dependencies = {
 		{ "rafamadriz/friendly-snippets" },
-		{ "L3MON4D3/LuaSnip", version = "v2.*" },
 	},
 	opts = {
-		snippets = {
-			expand = function(snippet)
-				require("luasnip").lsp_expand(snippet)
-			end,
-			active = function(filter)
-				if filter and filter.direction then
-					return require("luasnip").jumpable(filter.direction)
-				end
-				return require("luasnip").in_snippet()
-			end,
-			jump = function(direction)
-				require("luasnip").jump(direction)
-			end,
-		},
-		fuzzy = {
-			implementation = "rust",
-			use_frecency = true,
-			use_unsafe_no_lock = false,
-			sorts = { "exact", "score", "sort_text" },
-		},
-		completion = {
-			documentation = {
-				auto_show_delay_ms = 1000,
-				auto_show = true,
-				window = {
-					scrollbar = true,
-				},
-			},
-		},
-		keymap = {
-			["<Tab>"] = {
-				function(cmp)
-					if cmp.snippet_active() then
-						return cmp.accept()
-					else
-						return cmp.select_and_accept()
-					end
-				end,
-				"fallback",
-			},
-			["<S-Tab>"] = {
-				function()
-					local copilot = require("copilot.suggestion")
-					if copilot.is_visible() then
-						copilot.accept()
-					end
-				end,
-			},
-		},
+		keymap = { preset = "default" },
+		appearance = { nerd_font_variant = "mono" },
+		signature = { enabled = true },
+		completion = { documentation = { auto_show = true } },
 		sources = {
 			default = {
 				"lsp",
 				"snippets",
-				"buffer",
 				"path",
+				"buffer",
 			},
+			providers = {
+				lsp = {
+					min_keyword_length = 2,
+				},
+				buffer = {
+					max_items = 3,
+					min_keyword_length = 3,
+				},
+			},
+		},
+		fuzzy = {
+			implementation = "rust",
 		},
 	},
 	opts_extend = { "sources.default" },
