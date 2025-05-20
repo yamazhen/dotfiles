@@ -42,8 +42,9 @@ opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
 opt.numberwidth = 2
-
 opt.updatetime = 500
+
+o.scrolloff = 10
 
 vim.schedule(function()
 	opt.clipboard = "unnamedplus"
@@ -61,3 +62,6 @@ opt.cursorline = true
 o.cmdheight = 0
 
 opt.autowriteall = true
+
+opt.splitbelow = true
+opt.splitright = true

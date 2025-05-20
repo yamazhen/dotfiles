@@ -1,12 +1,10 @@
-font-family = JetBrainsMono Nerd Font Mono
-font-style = Medium
-font-size = 14
+font-size = 15
 theme = vague2k
 cursor-style = block
 cursor-style-blink = false
 window-decoration = false
 command = /opt/homebrew/bin/tmux new-session -A -s default
-window-padding-x = 120
+window-padding-x = 0
 window-padding-y = 0
 macos-window-shadow = false
 adjust-cell-height = 4

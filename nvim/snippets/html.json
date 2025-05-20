@@ -1,0 +1,356 @@
+{
+	"th:text": {
+		"prefix": "th:text",
+		"body": ["th:text=\"${1}\""]
+	},
+
+	"th:utext": {
+		"prefix": "th:utext",
+		"body": ["th:utext=\"${1}\""]
+	},
+
+	"th:if": {
+		"prefix": "th:if",
+		"body": ["th:if=\"${1}\""]
+	},
+
+	"th:unless": {
+		"prefix": "th:unless",
+		"body": ["th:unless=\"${1}\""]
+	},
+
+	"th:each": {
+		"prefix": "th:each",
+		"body": ["th:each=\"${1}\""]
+	},
+
+	"th:href": {
+		"prefix": "th:href",
+		"body": ["th:href=\"${1}\""]
+	},
+
+	"th:src": {
+		"prefix": "th:src",
+		"body": ["th:src=\"${1}\""]
+	},
+
+	"th:action": {
+		"prefix": "th:action",
+		"body": ["th:action=\"${1}\""]
+	},
+
+	"th:object": {
+		"prefix": "th:object",
+		"body": ["th:object=\"${1}\""]
+	},
+
+	"th:field": {
+		"prefix": "th:field",
+		"body": ["th:field=\"${1}\""]
+	},
+
+	"th:value": {
+		"prefix": "th:value",
+		"body": ["th:value=\"${1}\""]
+	},
+
+	"th:class": {
+		"prefix": "th:class",
+		"body": ["th:class=\"${1}\""]
+	},
+
+	"th:classappend": {
+		"prefix": "th:classappend",
+		"body": ["th:classappend=\"${1}\""]
+	},
+
+	"th:id": {
+		"prefix": "th:id",
+		"body": ["th:id=\"${1}\""]
+	},
+
+	"th:style": {
+		"prefix": "th:style",
+		"body": ["th:style=\"${1}\""]
+	},
+
+	"th:styleappend": {
+		"prefix": "th:styleappend",
+		"body": ["th:styleappend=\"${1}\""]
+	},
+
+	"th:attr": {
+		"prefix": "th:attr",
+		"body": ["th:attr=\"${1}\""]
+	},
+
+	"th:attrappend": {
+		"prefix": "th:attrappend",
+		"body": ["th:attrappend=\"${1}\""]
+	},
+
+	"th:attrprepend": {
+		"prefix": "th:attrprepend",
+		"body": ["th:attrprepend=\"${1}\""]
+	},
+
+	"th:switch": {
+		"prefix": "th:switch",
+		"body": ["th:switch=\"${1}\""]
+	},
+
+	"th:case": {
+		"prefix": "th:case",
+		"body": ["th:case=\"${1}\""]
+	},
+
+	"th:remove": {
+		"prefix": "th:remove",
+		"body": ["th:remove=\"${1}\""]
+	},
+
+	"th:with": {
+		"prefix": "th:with",
+		"body": ["th:with=\"${1}\""]
+	},
+
+	"th:inline": {
+		"prefix": "th:inline",
+		"body": ["th:inline=\"${1}\""]
+	},
+
+	"th:selected": {
+		"prefix": "th:selected",
+		"body": ["th:selected=\"${1}\""]
+	},
+
+	"th:checked": {
+		"prefix": "th:checked",
+		"body": ["th:checked=\"${1}\""]
+	},
+
+	"th:disabled": {
+		"prefix": "th:disabled",
+		"body": ["th:disabled=\"${1}\""]
+	},
+
+	"th:readonly": {
+		"prefix": "th:readonly",
+		"body": ["th:readonly=\"${1}\""]
+	},
+
+	"th:multiple": {
+		"prefix": "th:multiple",
+		"body": ["th:multiple=\"${1}\""]
+	},
+
+	"th:name": {
+		"prefix": "th:name",
+		"body": ["th:name=\"${1}\""]
+	},
+
+	"th:alt": {
+		"prefix": "th:alt",
+		"body": ["th:alt=\"${1}\""]
+	},
+
+	"th:title": {
+		"prefix": "th:title",
+		"body": ["th:title=\"${1}\""]
+	},
+
+	"th:lang": {
+		"prefix": "th:lang",
+		"body": ["th:lang=\"${1}\""]
+	},
+
+	"th:dir": {
+		"prefix": "th:dir",
+		"body": ["th:dir=\"${1}\""]
+	},
+
+	"th:hidden": {
+		"prefix": "th:hidden",
+		"body": ["th:hidden=\"${1}\""]
+	},
+
+	"th:data": {
+		"prefix": "th:data-",
+		"body": ["th:data-${1:attribute}=\"${2}\""]
+	},
+
+	"th:fragment": {
+		"prefix": "th:fragment",
+		"body": ["th:fragment=\"${1}\""]
+	},
+
+	"th:include": {
+		"prefix": "th:include",
+		"body": ["th:include=\"${1}\""]
+	},
+
+	"th:replace": {
+		"prefix": "th:replace",
+		"body": ["th:replace=\"${1}\""]
+	},
+
+	"th:insert": {
+		"prefix": "th:insert",
+		"body": ["th:insert=\"${1}\""]
+	},
+
+	"th:assert": {
+		"prefix": "th:assert",
+		"body": ["th:assert=\"${1}\""]
+	},
+
+	"th:errors": {
+		"prefix": "th:errors",
+		"body": ["th:errors=\"${1}\""]
+	},
+
+	"th:errorclass": {
+		"prefix": "th:errorclass",
+		"body": ["th:errorclass=\"${1}\""]
+	},
+
+	"th:type": {
+		"prefix": "th:type",
+		"body": ["th:type=\"${1}\""]
+	},
+
+	"th:accept": {
+		"prefix": "th:accept",
+		"body": ["th:accept=\"${1}\""]
+	},
+
+	"th:accept_charset": {
+		"prefix": "th:accept-charset",
+		"body": ["th:accept-charset=\"${1}\""]
+	},
+
+	"th:accesskey": {
+		"prefix": "th:accesskey",
+		"body": ["th:accesskey=\"${1}\""]
+	},
+
+	"th:autocomplete": {
+		"prefix": "th:autocomplete",
+		"body": ["th:autocomplete=\"${1}\""]
+	},
+
+	"th:autofocus": {
+		"prefix": "th:autofocus",
+		"body": ["th:autofocus=\"${1}\""]
+	},
+
+	"th:enctype": {
+		"prefix": "th:enctype",
+		"body": ["th:enctype=\"${1}\""]
+	},
+
+	"th:for": {
+		"prefix": "th:for",
+		"body": ["th:for=\"${1}\""]
+	},
+
+	"th:form": {
+		"prefix": "th:form",
+		"body": ["th:form=\"${1}\""]
+	},
+
+	"th:formaction": {
+		"prefix": "th:formaction",
+		"body": ["th:formaction=\"${1}\""]
+	},
+
+	"th:formenctype": {
+		"prefix": "th:formenctype",
+		"body": ["th:formenctype=\"${1}\""]
+	},
+
+	"th:formmethod": {
+		"prefix": "th:formmethod",
+		"body": ["th:formmethod=\"${1}\""]
+	},
+
+	"th:formtarget": {
+		"prefix": "th:formtarget",
+		"body": ["th:formtarget=\"${1}\""]
+	},
+
+	"th:max": {
+		"prefix": "th:max",
+		"body": ["th:max=\"${1}\""]
+	},
+
+	"th:maxlength": {
+		"prefix": "th:maxlength",
+		"body": ["th:maxlength=\"${1}\""]
+	},
+
+	"th:method": {
+		"prefix": "th:method",
+		"body": ["th:method=\"${1}\""]
+	},
+
+	"th:min": {
+		"prefix": "th:min",
+		"body": ["th:min=\"${1}\""]
+	},
+
+	"th:minlength": {
+		"prefix": "th:minlength",
+		"body": ["th:minlength=\"${1}\""]
+	},
+
+	"th:pattern": {
+		"prefix": "th:pattern",
+		"body": ["th:pattern=\"${1}\""]
+	},
+
+	"th:placeholder": {
+		"prefix": "th:placeholder",
+		"body": ["th:placeholder=\"${1}\""]
+	},
+
+	"th:required": {
+		"prefix": "th:required",
+		"body": ["th:required=\"${1}\""]
+	},
+
+	"th:size": {
+		"prefix": "th:size",
+		"body": ["th:size=\"${1}\""]
+	},
+
+	"th:step": {
+		"prefix": "th:step",
+		"body": ["th:step=\"${1}\""]
+	},
+
+	"th:tabindex": {
+		"prefix": "th:tabindex",
+		"body": ["th:tabindex=\"${1}\""]
+	},
+
+	"th:target": {
+		"prefix": "th:target",
+		"body": ["th:target=\"${1}\""]
+	},
+
+	"th:cols": {
+		"prefix": "th:cols",
+		"body": ["th:cols=\"${1}\""]
+	},
+
+	"th:rows": {
+		"prefix": "th:rows",
+		"body": ["th:rows=\"${1}\""]
+	},
+
+	"th:wrap": {
+		"prefix": "th:wrap",
+		"body": ["th:wrap=\"${1}\""]
+	}
+}

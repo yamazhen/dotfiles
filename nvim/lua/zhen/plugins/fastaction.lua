@@ -1,14 +1,14 @@
 return {
 	"Chaitanyabsprip/fastaction.nvim",
-	opts = {
-		keys = "1234567890",
-		popup = {
-			border = "single",
-			title = nil,
-		},
-		register_ui_select = true,
-	},
-	keys = {
-		{ "<leader>si", "<cmd>lua require('fastaction').code_action()<cr>", desc = "Fast Action" },
-	},
+	config = function()
+		require("fastaction").setup({
+			register_ui_select = true,
+		})
+		vim.keymap.set(
+			{ "n", "x" },
+			"<leader>si",
+			'<cmd>lua require("fastaction").code_action()<CR>',
+			{ desc = "Display code actions", buffer = bufnr }
+		)
+	end,
 }

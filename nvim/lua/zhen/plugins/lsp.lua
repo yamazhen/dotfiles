@@ -17,6 +17,15 @@ return {
 			},
 		})
 
+		vim.diagnostic.config({
+			float = {
+				focusable = false,
+				style = "minimal",
+				header = "",
+				prefix = "",
+			},
+		})
+
 		local keymap = vim.keymap.set
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
