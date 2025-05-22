@@ -24,6 +24,12 @@ return {
 			desc = "Live Grep",
 		},
 		{
+			"<leader>fg",
+			function()
+				require("fzf-lua").git_files()
+			end,
+		},
+		{
 			"<leader>sr",
 			function()
 				require("fzf-lua").lsp_references()

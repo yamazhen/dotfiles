@@ -1,3 +1,15 @@
+local function create_todays_note()
+	local date = os.date("%Y-%m-%d")
+	local dir = vim.fn.expand("~/notes/daily/")
+	local path = dir .. date .. ".md"
+
+	if vim.fn.isdirectory(dir) == 0 then
+		vim.fn.mkdir(dir, "p")
+	end
+
+	vim.cmd("e " .. path)
+end
+
 vim.g.mapleader = " "
 
 local keymap = vim.keymap.set
@@ -26,3 +38,5 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 keymap("n", "J", "mzJ`z", opts)
 keymap("i", "<C-c>", "<Esc>", opts)
+
+keymap("n", "<leader>jn", create_todays_note, opts)

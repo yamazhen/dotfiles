@@ -1,18 +1,12 @@
 return {
-	"lukas-reineke/indent-blankline.nvim",
+	"echasnovski/mini.indentscope",
 	event = { "BufReadPre", "BufNewFile" },
-	main = "ibl",
 	config = function()
-		vim.api.nvim_set_hl(0, "IblScope", { fg = "#ffffff" })
-
-		require("ibl").setup({
-			indent = { char = "│" },
-			scope = {
-				show_start = false,
-				show_end = false,
-			},
-			exclude = {
-				filetypes = { "yaml", "yml" },
+		local mini_indentscope = require("mini.indentscope")
+		mini_indentscope.setup({
+			symbol = "│",
+			draw = {
+				animation = mini_indentscope.gen_animation.none(),
 			},
 		})
 	end,

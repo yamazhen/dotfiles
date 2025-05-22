@@ -1,6 +1,9 @@
 return {
 	"folke/trouble.nvim",
 	opts = {
+		win = {
+			type = "float",
+		},
 		focus = true,
 		keys = {
 			["<cr>"] = "jump_close",
