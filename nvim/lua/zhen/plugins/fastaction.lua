@@ -1,5 +1,6 @@
 return {
 	"Chaitanyabsprip/fastaction.nvim",
+	event = { "LspAttach" },
 	config = function()
 		require("fastaction").setup({
 			register_ui_select = true,

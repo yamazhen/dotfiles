@@ -6,6 +6,8 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
+opt.foldmethod = "manual"
+
 o.winborder = "single"
 
 opt.fillchars = { eob = " " }
@@ -49,8 +51,6 @@ end)
 vim.diagnostic.config({
 	float = { enable = false },
 })
-
-o.cmdheight = 0
 
 opt.autowriteall = true
 

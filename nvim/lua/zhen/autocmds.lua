@@ -63,10 +63,11 @@ autocmd("FileType", {
 	end,
 })
 
--- nvim_treesitter#foldexpr is not working for html
-autocmd("FileType", {
-	pattern = "html",
+autocmd("WinLeave", {
+	pattern = "*",
 	callback = function()
-		vim.opt_local.foldmethod = "indent"
+		if vim.bo.filetype == "trouble" then
+			require("trouble").close()
+		end
 	end,
 })

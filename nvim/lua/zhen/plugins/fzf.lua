@@ -26,7 +26,7 @@ return {
 		{
 			"<leader>fg",
 			function()
-				require("fzf-lua").git_files()
+				require("fzf-lua").git_status()
 			end,
 		},
 		{
@@ -58,6 +58,7 @@ return {
 			buffers = {
 				formatter = "path.filename_first",
 			},
+			fzf_colors = false,
 		})
 	end,
 }

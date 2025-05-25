@@ -42,6 +42,7 @@ bindkey '^[[B' history-search-forward
 bindkey '^[[Z' autosuggest-accept
 bindkey '^I' expand-or-complete
 
+echo -e "\e[2 q"
 
 #aliases 
 alias ls="eza -w 60"
