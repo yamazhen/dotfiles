@@ -12,6 +12,14 @@ o.winborder = "single"
 
 opt.fillchars = { eob = " " }
 
+o.foldenable = true
+o.foldlevel = 99
+o.foldmethod = "expr"
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldtext = ""
+opt.foldcolumn = "0"
+opt.fillchars:append({ fold = " " })
+
 opt.ignorecase = true
 opt.smartcase = true
 

@@ -2,12 +2,14 @@ local autocmd = vim.api.nvim_create_autocmd
 local opts = { buffer = true, silent = true }
 local keymap = vim.keymap.set
 
--- helper to disable fzf-lua
+-- helper to disable pickers
 local function disablePicker()
-	keymap({ "n", "v" }, "<leader>ff", "<nop>", opts)
-	keymap({ "n", "v" }, "<leader>fs", "<nop>", opts)
-	keymap({ "n", "v" }, "<leader>fb", "<nop>", opts)
-	keymap({ "n", "v" }, "<leader>sr", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>pf", "<nop>", opts)
+	keymap({ "n", "v" }, "<C-e>", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>pws", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>pWs", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>ps", "<nop>", opts)
+	keymap({ "n", "v" }, "<leader>vh", "<nop>", opts)
 end
 
 -- prevent auto commenting new lines

@@ -11,7 +11,7 @@ return {
 			callback = function()
 				keymap("n", "q", "<cmd>close<CR>", { buffer = true })
 				keymap("n", "<leader>p", function()
-					vim.cmd.Git({ "pull", "--rebase" })
+					vim.cmd("Git pull --rebase")
 				end)
 			end,
 		})

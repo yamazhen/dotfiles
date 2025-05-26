@@ -38,6 +38,7 @@ return {
 				keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
 				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 				keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
+				keymap("n", "<leader>si", vim.lsp.buf.code_action, opts)
 			end,
 		})
 	end,

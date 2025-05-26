@@ -3,36 +3,36 @@ return {
 	cmd = "FzfLua",
 	keys = {
 		{
-			"<leader>ff",
+			"<leader>pf",
 			function()
 				require("fzf-lua").files()
 			end,
-			desc = "Find Files",
 		},
 		{
-			"<leader>fb",
+			"<C-p>",
 			function()
-				require("fzf-lua").buffers()
+				require("fzf-lua").git_files()
 			end,
-			desc = "Find Buffers",
 		},
 		{
-			"<leader>fs",
+			"<leader>pws",
 			function()
-				require("fzf-lua").live_grep()
+				local word = vim.fn.expand("<cword>")
+				require("fzf-lua").grep({ search = word })
 			end,
 			desc = "Live Grep",
 		},
 		{
-			"<leader>fg",
+			"<leader>pWs",
 			function()
-				require("fzf-lua").git_status()
+				local word = vim.fn.expand("<cWORD>")
+				require("fzf-lua").grep({ search = word })
 			end,
 		},
 		{
-			"<leader>sr",
+			"<leader>ps",
 			function()
-				require("fzf-lua").lsp_references()
+				require("fzf-lua").grep({ search = vim.fn.input("Grep > ") })
 			end,
 			desc = "LSP References",
 		},
@@ -46,8 +46,6 @@ return {
 				col = 0.6,
 				preview = { hidden = "hidden" },
 			},
-			file_icon_padding = "",
-			file_icons = false,
 			fzf_opts = {
 				["--layout"] = "reverse",
 				["--info"] = "inline",
@@ -58,7 +56,7 @@ return {
 			buffers = {
 				formatter = "path.filename_first",
 			},
-			fzf_colors = false,
+			fzf_colors = true,
 		})
 	end,
 }

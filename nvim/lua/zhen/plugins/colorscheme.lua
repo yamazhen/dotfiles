@@ -24,7 +24,7 @@ return {
 
 		vim.cmd("highlight WinSeparator guifg=#252530 guibg=NONE")
 
-		vim.api.nvim_set_hl(0, "StatusLine", { fg = "#707075", bg = "NONE" })
+		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
 		vim.opt.statusline = " %{v:lua.statusline_mode()} • %<%t%{&modified ? ' ●' : ''} %= %l:%c • %p%% "
 	end,
