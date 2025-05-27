@@ -44,7 +44,7 @@ alt-4 = 'workspace Comm'
 alt-5 = 'workspace Music'
 alt-d = 'workspace Desktop'
 alt-p = 'workspace Postman'
-alt-w = 'workspace Workbench'
+alt-w = 'workspace Database'
 alt-s = 'workspace Monitor'
 alt-tab = 'workspace-back-and-forth'
 alt-shift-1 = ['move-node-to-workspace Editor', "workspace Editor"]
@@ -54,7 +54,7 @@ alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]
 alt-shift-5 = ['move-node-to-workspace Music', "workspace Music"]
 alt-shift-d = ['move-node-to-workspace Desktop', "workspace Desktop"]
 alt-shift-p = ['move-node-to-workspace Postman', "workspace Postman"]
-alt-shift-w = ['move-node-to-workspace Workbench', "workspace Workbench"]
+alt-shift-w = ['move-node-to-workspace Database', "workspace Database"]
 alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
 
 alt-r = 'mode edit'
@@ -143,8 +143,8 @@ if.app-id = 'com.kakao.KakaoTalkMac'
 run = ['move-node-to-workspace Comm']
 
 [[on-window-detected]]
-if.app-id = 'com.oracle.workbench.MySQLWorkbench'
-run = ['move-node-to-workspace Workbench']
+if.app-id = 'org.jkiss.dbeaver.core.product'
+run = ['move-node-to-workspace Database']
 
 [[on-window-detected]]
 if.app-id = 'com.github.Electron'

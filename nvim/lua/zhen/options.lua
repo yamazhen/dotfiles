@@ -8,8 +8,6 @@ opt.relativenumber = true
 
 opt.foldmethod = "manual"
 
-o.winborder = "single"
-
 opt.fillchars = { eob = " " }
 
 o.foldenable = true
@@ -23,12 +21,12 @@ opt.fillchars:append({ fold = " " })
 opt.ignorecase = true
 opt.smartcase = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.smartindent = true
+opt.smartindent = true
 
 opt.wrap = false
 

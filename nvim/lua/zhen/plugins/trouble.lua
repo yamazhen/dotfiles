@@ -3,10 +3,13 @@ return {
 	opts = {
 		win = {
 			type = "float",
+			border = "single",
 		},
 		focus = true,
+		auto_preview = false,
 		keys = {
 			["<cr>"] = "jump_close",
+			["q"] = "close",
 		},
 	},
 	cmd = "Trouble",

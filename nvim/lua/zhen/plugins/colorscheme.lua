@@ -14,7 +14,9 @@ end
 
 return {
 	"vague2k/vague.nvim",
-	config = function()
+	priority = 1000,
+	lazy = false,
+	init = function()
 		require("vague").setup({})
 		vim.cmd("colorscheme vague")
 

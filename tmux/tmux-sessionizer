@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-  --color=fg:-1,fg+:#6e94b2,bg:-1,bg+:#141415
-  --color=hl:#333738,hl+:#6e94b2,info:#606079,marker:#6e94b2
-  --color=prompt:#f3be7c,spinner:#8cb66d,pointer:#cdcdcd,header:#c3c3d5
-  --color=border:#252530,label:#aeaed1,query:#cdcdcd
-  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="$ "
-  --marker=">" --pointer="" --separator="─" --scrollbar="│"
-  --layout="reverse" --info="right"'
-
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
@@ -22,13 +13,21 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+# If not in tmux and tmux isn't running, start new session
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-tmux new-session -s $selected_name -c $selected
+    tmux new-session -s $selected_name -c $selected
     exit 0
 fi
 
+# Create session if it doesn't exist
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
 fi
 
-tmux switch-client -t $selected_name
+# If we're in tmux, switch to the session
+if [[ -n $TMUX ]]; then
+    tmux switch-client -t $selected_name
+else
+    # If we're not in tmux but tmux is running, attach to the session
+    tmux attach-session -t $selected_name
+fi
