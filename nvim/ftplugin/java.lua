@@ -1,14 +1,5 @@
 local jdtls = require("jdtls")
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if client then
-			client.server_capabilities.semanticTokensProvider = nil
-		end
-	end,
-})
-
 local function get_jdtls_paths()
 	-- hard coded path for now because mason-registry is not working
 	local jdtls_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls")
@@ -28,15 +19,22 @@ local function get_init_options()
 	local extendedClientCapabilities = jdtls.extendedClientCapabilities
 	extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-	local dap_path = vim.fn.glob(
-		"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"
+	local java_debug = vim.fn.glob(
+		"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
+		true
 	)
+
+	local bundles = {}
+
+	if java_debug ~= "" then
+		table.insert(bundles, java_debug)
+	end
+
+	-- java test is not working ill try to fix it later
 
 	return {
 		extendedClientCapabilities = extendedClientCapabilities,
-		bundles = {
-			dap_path,
-		},
+		bundles = bundles,
 	}
 end
 
@@ -46,11 +44,6 @@ if not root_dir then
 end
 
 local capabilities = require("blink.cmp").get_lsp_capabilities()
-capabilities.workspace = capabilities.workspace or {}
-capabilities.workspace.configuration = true
-capabilities.textDocument = capabilities.textDocument or {}
-capabilities.textDocument.completion = capabilities.textDocument.completion or {}
-capabilities.textDocument.completion.snippetSupport = false
 
 local launcher, os_config, lombok = get_jdtls_paths()
 local workspace_dir = get_workspace(root_dir)
@@ -147,33 +140,19 @@ local settings = {
 	},
 }
 
-local dap = require("dap")
-dap.configurations.java = {
-	{
-		type = "java",
-		request = "attach",
-		name = "[ATTACH] Remote Debug",
-		hostName = "127.0.0.1",
-		port = 5005,
-	},
-}
-
 require("jdtls").start_or_attach({
 	cmd = cmd,
 	root_dir = root_dir,
 	settings = settings,
 	capabilities = capabilities,
 	init_options = init_options,
-	on_attach = function(client, bufnr)
+	on_attach = function(_, _)
 		jdtls.setup_dap({ hotcodereplace = "auto" })
+		require("jdtls.dap").setup_dap_main_class_configs()
 
-		local opts = { buffer = bufnr, silent = true }
-		vim.keymap.set("n", "<leader>tc", function()
-			jdtls.test_class()
-		end, opts)
-
-		vim.keymap.set("n", "<leader>tm", function()
-			jdtls.test_nearest_method()
-		end, opts)
+		for _, config in ipairs(require("dap").configurations.java or {}) do
+			config.console = "none"
+			config.externalConsole = false
+		end
 	end,
 })
