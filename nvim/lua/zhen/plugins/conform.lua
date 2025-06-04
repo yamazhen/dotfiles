@@ -9,15 +9,16 @@ return {
 		}
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "biome" },
-				typescript = { "biome" },
-				javascriptreact = { "biome" },
-				typescriptreact = { "biome" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
 				css = { "prettier" },
 				lua = { "stylua" },
 				html = { "prettier" },
-				json = { "biome" },
+				json = { "prettier" },
 				sql = { "sql-formatter" },
+				python = { "isort" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

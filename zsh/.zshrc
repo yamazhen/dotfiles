@@ -1,18 +1,21 @@
-#oh-my-zsh setup
+# === OH-MY-ZSH SETUP === #
 export ZSH="$HOME/.oh-my-zsh"
 export DISABLE_AUTO_UPDATE="true"
 export DISABLE_UPDATE_PROMPT="true"
 ZSH_THEME="robbyrussell"
-
-eval "$(zoxide init zsh)"
-
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# === KEYBINDING === #
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^[[Z' autosuggest-accept
+bindkey '^I' expand-or-complete
 bindkey '^L' autosuggest-accept
 
-#my config 
+# === EXPORTS === #
 export PATH="/opt/homebrew/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
@@ -29,7 +32,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --marker=">" --pointer="" --separator="─" --scrollbar="│"
   --layout="reverse" --info="right"'
 
-# history setup
+# === HISTORY SETUP === #
 export HISTFILE=$ZDOTDIR/.zsh_history
 SAVEHIST=1000
 HISTSIZE=999
@@ -37,19 +40,24 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-bindkey '^[[Z' autosuggest-accept
-bindkey '^I' expand-or-complete
 
-echo -e "\e[2 q"
+# === OTHER SETUPS === #
+eval "$(zoxide init zsh)"
 
-#aliases 
+# === ALIASES === #
 alias ls="eza -w 60"
 alias cd="z"
 alias mvni="mvn -T 1C clean install -DskipTests"
 alias springbuildcore="cd solvway-core-libs && mvn -T 1C clean install -DskipTests && cd .. && cd solvway-core-session && mvn -T 1C clean install -DskipTests && cd .."
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# === MUST BE LAST === #
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# i dont know why but tailwind is not stopping and draining my battery
+pkill -f tailwindcss-language-server

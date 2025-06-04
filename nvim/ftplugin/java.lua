@@ -24,6 +24,22 @@ local function get_workspace(root_dir)
 	return os.getenv("HOME") .. "/jdtls/workspace/" .. project_name
 end
 
+local function get_init_options()
+	local extendedClientCapabilities = jdtls.extendedClientCapabilities
+	extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
+	local dap_path = vim.fn.glob(
+		"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"
+	)
+
+	return {
+		extendedClientCapabilities = extendedClientCapabilities,
+		bundles = {
+			dap_path,
+		},
+	}
+end
+
 local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
 if not root_dir then
 	root_dir = vim.fn.expand("%:p:h")
@@ -38,9 +54,7 @@ capabilities.textDocument.completion.snippetSupport = false
 
 local launcher, os_config, lombok = get_jdtls_paths()
 local workspace_dir = get_workspace(root_dir)
-
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+local init_options = get_init_options()
 
 local cmd = {
 	"java",
@@ -133,12 +147,33 @@ local settings = {
 	},
 }
 
+local dap = require("dap")
+dap.configurations.java = {
+	{
+		type = "java",
+		request = "attach",
+		name = "[ATTACH] Remote Debug",
+		hostName = "127.0.0.1",
+		port = 5005,
+	},
+}
+
 require("jdtls").start_or_attach({
 	cmd = cmd,
 	root_dir = root_dir,
 	settings = settings,
 	capabilities = capabilities,
-	init_options = {
-		extendedClientCapabilities = extendedClientCapabilities,
-	},
+	init_options = init_options,
+	on_attach = function(client, bufnr)
+		jdtls.setup_dap({ hotcodereplace = "auto" })
+
+		local opts = { buffer = bufnr, silent = true }
+		vim.keymap.set("n", "<leader>tc", function()
+			jdtls.test_class()
+		end, opts)
+
+		vim.keymap.set("n", "<leader>tm", function()
+			jdtls.test_nearest_method()
+		end, opts)
+	end,
 })

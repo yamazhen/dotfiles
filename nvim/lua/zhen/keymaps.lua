@@ -1,10 +1,19 @@
-local function create_todays_note()
-	local date = os.date("%Y-%m-%d")
+local function note(yesterday)
+	local target_time = yesterday and (os.time() - 24 * 60 * 60) or os.time()
+	local date = os.date("%Y-%m-%d", target_time)
 	local dir = vim.fn.expand("~/notes/daily/")
 	local path = dir .. date .. ".md"
 
 	if vim.fn.isdirectory(dir) == 0 then
 		vim.fn.mkdir(dir, "p")
+	end
+
+	if yesterday then
+		local stat = vim.loop.fs_stat(path)
+		if not stat then
+			vim.notify("No note found for yesterday", vim.log.levels.WARN)
+			return
+		end
 	end
 
 	vim.cmd("e " .. path)
@@ -36,7 +45,10 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 keymap("n", "J", "mzJ`z", opts)
 
-keymap("n", "<leader>n", create_todays_note, opts)
+keymap("n", "<leader>nt", note, opts)
+keymap("n", "<leader>ny", function()
+	note(true)
+end, opts)
 
 -- insert kirby when im in cmdline
 keymap("c", "<C-s>", "\\(.*\\)")
