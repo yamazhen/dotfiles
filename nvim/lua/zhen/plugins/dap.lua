@@ -1,6 +1,15 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = { "igorlfs/nvim-dap-view", opts = {} },
+	keys = {
+		{ "<leader>dv", desc = "Debug: Toggle DAP View" },
+		{ "<leader>dc", desc = "Debug: Continue" },
+		{ "<leader>do", desc = "Debug: Step Over" },
+		{ "<leader>di", desc = "Debug: Step Into" },
+		{ "<leader>dx", desc = "Debug: Step Out" },
+		{ "<leader>b", desc = "Debug: Toggle Breakpoint" },
+		{ "<leader>B", desc = "Debug: Set Conditional Breakpoint" },
+	},
 	config = function()
 		local dap, dv = require("dap"), require("dap-view")
 		dap.set_log_level("DEBUG")
@@ -24,14 +33,15 @@ return {
 			dv.open()
 		end
 
-		vim.keymap.set("n", "<leader>dv", "<cmd>DapViewToggle<cr>", { desc = "Debug: Toggle DAP View" })
-		vim.keymap.set("n", "<leader>dc", dap.continue)
-		vim.keymap.set("n", "<leader>do", dap.step_over)
-		vim.keymap.set("n", "<leader>di", dap.step_into)
-		vim.keymap.set("n", "<leader>dx", dap.step_out)
-		vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-		vim.keymap.set("n", "<leader>B", function()
+		local keymap = vim.keymap.set
+		keymap("n", "dv", "<cmd>DapViewToggle<cr>", { desc = "Debug: Toggle DAP View" })
+		keymap("n", "<leader>dc", dap.continue)
+		keymap("n", "<leader>do", dap.step_over)
+		keymap("n", "<leader>di", dap.step_into)
+		keymap("n", "<leader>dx", dap.step_out)
+		keymap("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+		keymap("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-		end, { desc = "Debug: Set Conditional Breakpoint" })
+		end, { desc = "Debug: Conditional Breakpoint" })
 	end,
 }

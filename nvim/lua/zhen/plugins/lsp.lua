@@ -25,6 +25,7 @@ return {
 				style = "minimal",
 				header = "",
 				prefix = "",
+				source = "always",
 			},
 		})
 
@@ -37,6 +38,7 @@ return {
 					client.server_capabilities.semanticTokensProvider = nil
 				end
 				local opts = { buffer = event.buf, noremap = true, silent = true }
+
 				keymap("n", "<leader>sd", vim.lsp.buf.definition, opts)
 				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 				keymap("n", "<leader>md", vim.diagnostic.open_float, opts)
