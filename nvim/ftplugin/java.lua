@@ -1,39 +1,36 @@
 local jdtls = require("jdtls")
 
+local MASON_PATH = vim.fn.expand("~/.local/share/nvim/mason/packages")
+local CONFIG_PATH = vim.fn.stdpath("config")
+local WORKSPACE_BASE = os.getenv("HOME") .. "/jdtls/workspace"
+
 local function get_jdtls_paths()
-	-- hard coded path for now because mason-registry is not working
-	local jdtls_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls")
-	local lombok_path = vim.fn.expand("~/.local/share/nvim/mason/packages/lombok-nightly/lombok.jar")
-
-	local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-	local config = jdtls_path .. "/config_mac"
-	return launcher, config, lombok_path
+	local jdtls_path = MASON_PATH .. "/jdtls"
+	return {
+		launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+		config = jdtls_path .. "/config_mac",
+		lombok = MASON_PATH .. "/lombok-nightly/lombok.jar",
+	}
 end
 
-local function get_workspace(root_dir)
+local function get_workspace()
+	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+		or vim.fn.expand("%:p:h")
+
 	local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-	return os.getenv("HOME") .. "/jdtls/workspace/" .. project_name
+	return WORKSPACE_BASE .. "/" .. project_name
 end
 
-local function get_init_options()
-	local extendedClientCapabilities = jdtls.extendedClientCapabilities
-	extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
-	local java_debug = vim.fn.glob(
-		"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
-		true
-	)
-
-	-- java-test@0.43.0
-	-- do not use the latest as it has issues with jdtls
-	local java_test = vim.fn.glob("~/.local/share/nvim/mason/packages/java-test/extension/server/*.jar", true)
-
+local function get_bundles()
 	local bundles = {}
 
+	local java_debug =
+		vim.fn.glob(MASON_PATH .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", true)
 	if java_debug ~= "" then
 		table.insert(bundles, java_debug)
 	end
 
+	local java_test = vim.fn.glob(MASON_PATH .. "/java-test/extension/server/*.jar", true)
 	if java_test ~= "" then
 		for jar in string.gmatch(java_test, "[^\n]+") do
 			if jar ~= "" then
@@ -42,24 +39,21 @@ local function get_init_options()
 		end
 	end
 
-	return {
-		extendedClientCapabilities = extendedClientCapabilities,
-		bundles = bundles,
-	}
+	return bundles
 end
 
-local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
-if not root_dir then
-	root_dir = vim.fn.expand("%:p:h")
+local function setup_keybindings(bufnr)
+	local opts = { silent = true, buffer = bufnr }
+	vim.keymap.set("n", "<leader>tc", jdtls.test_class, opts)
+	vim.keymap.set("n", "<leader>tm", jdtls.test_nearest_method, opts)
 end
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
+local paths = get_jdtls_paths()
+local bundles = get_bundles()
 
-local launcher, os_config, lombok = get_jdtls_paths()
-local workspace_dir = get_workspace(root_dir)
-local init_options = get_init_options()
+local config = {}
 
-local cmd = {
+config.cmd = {
 	"java",
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
@@ -72,21 +66,21 @@ local cmd = {
 	"java.base/java.util=ALL-UNNAMED",
 	"--add-opens",
 	"java.base/java.lang=ALL-UNNAMED",
-	"-javaagent:" .. lombok,
+	"-javaagent:" .. paths.lombok,
 	"-jar",
-	launcher,
+	paths.launcher,
 	"-configuration",
-	os_config,
+	paths.config,
 	"-data",
-	workspace_dir,
+	get_workspace(),
 }
 
-local settings = {
+config.settings = {
 	java = {
 		format = {
 			enabled = true,
 			settings = {
-				url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+				url = CONFIG_PATH .. "/lang_servers/intellij-java-google-style.xml",
 				profile = "GoogleStyle",
 			},
 		},
@@ -150,18 +144,20 @@ local settings = {
 	},
 }
 
-require("jdtls").start_or_attach({
-	cmd = cmd,
-	root_dir = root_dir,
-	settings = settings,
-	capabilities = capabilities,
-	init_options = init_options,
-	on_attach = function(_, bufnr)
-		jdtls.setup_dap({ hotcodereplace = "auto" })
-		require("jdtls.dap").setup_dap_main_class_configs()
+config.capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		local opts = { silent = true, buffer = bufnr }
-		vim.keymap.set("n", "<leader>tc", jdtls.test_class, opts)
-		vim.keymap.set("n", "<leader>tm", jdtls.test_nearest_method, opts)
-	end,
-})
+config.init_options = {
+	extendedClientCapabilities = vim.tbl_extend("force", jdtls.extendedClientCapabilities, {
+		resolveAdditionalTextEditsSupport = true,
+	}),
+	bundles = bundles,
+}
+
+config.on_attach = function(_, bufnr)
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	require("jdtls.dap").setup_dap_main_class_configs()
+
+	setup_keybindings(bufnr)
+end
+
+require("jdtls").start_or_attach(config)
