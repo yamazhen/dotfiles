@@ -24,13 +24,23 @@ local function get_init_options()
 		true
 	)
 
+	-- java-test@0.43.0
+	-- do not use the latest as it has issues with jdtls
+	local java_test = vim.fn.glob("~/.local/share/nvim/mason/packages/java-test/extension/server/*.jar", true)
+
 	local bundles = {}
 
 	if java_debug ~= "" then
 		table.insert(bundles, java_debug)
 	end
 
-	-- java test is not working ill try to fix it later
+	if java_test ~= "" then
+		for jar in string.gmatch(java_test, "[^\n]+") do
+			if jar ~= "" then
+				table.insert(bundles, jar)
+			end
+		end
+	end
 
 	return {
 		extendedClientCapabilities = extendedClientCapabilities,
@@ -146,13 +156,12 @@ require("jdtls").start_or_attach({
 	settings = settings,
 	capabilities = capabilities,
 	init_options = init_options,
-	on_attach = function(_, _)
+	on_attach = function(_, bufnr)
 		jdtls.setup_dap({ hotcodereplace = "auto" })
 		require("jdtls.dap").setup_dap_main_class_configs()
 
-		for _, config in ipairs(require("dap").configurations.java or {}) do
-			config.console = "none"
-			config.externalConsole = false
-		end
+		local opts = { silent = true, buffer = bufnr }
+		vim.keymap.set("n", "<leader>tc", jdtls.test_class, opts)
+		vim.keymap.set("n", "<leader>tm", jdtls.test_nearest_method, opts)
 	end,
 })
