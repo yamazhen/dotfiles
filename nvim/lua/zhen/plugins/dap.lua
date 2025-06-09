@@ -2,7 +2,7 @@ return {
 	"mfussenegger/nvim-dap",
 	dependencies = { "igorlfs/nvim-dap-view", opts = {} },
 	keys = {
-		{ "<leader>dv", desc = "Debug: Toggle DAP View" },
+		{ "dv", desc = "Debug: Toggle DAP View" },
 		{ "<leader>dc", desc = "Debug: Continue" },
 		{ "<leader>do", desc = "Debug: Step Over" },
 		{ "<leader>di", desc = "Debug: Step Into" },
@@ -16,7 +16,7 @@ return {
 
 		dv.setup({
 			winbar = {
-				sections = { "watches", "scopes", "exceptions", "breakpoints", "threads", "repl", "console" },
+				sections = { "scopes", "breakpoints", "threads", "repl", "console" },
 				default_section = "scopes",
 			},
 			windows = {
@@ -28,13 +28,18 @@ return {
 
 		dap.listeners.before.attach["dap-view-config"] = function()
 			dv.open()
+			vim.cmd("wincmd j")
 		end
 		dap.listeners.before.launch["dap-view-config"] = function()
 			dv.open()
+			vim.cmd("wincmd j")
 		end
 
 		local keymap = vim.keymap.set
-		keymap("n", "dv", "<cmd>DapViewToggle<cr>", { desc = "Debug: Toggle DAP View" })
+		keymap("n", "dv", function()
+			dv.toggle()
+			vim.cmd("wincmd j")
+		end, { desc = "Debug: Toggle DAP View" })
 		keymap("n", "<leader>dc", dap.continue)
 		keymap("n", "<leader>do", dap.step_over)
 		keymap("n", "<leader>di", dap.step_into)

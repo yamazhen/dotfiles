@@ -1,0 +1,10 @@
+[general]
+import = ["~/.config/alacritty/themes/vague.toml"]
+
+[window]
+decorations = "None"
+padding = { x = 30, y = 30}
+
+[font]
+size = 14.5
+normal = {family = "JetBrainsMono Nerd Font Mono", style = "Thin"}

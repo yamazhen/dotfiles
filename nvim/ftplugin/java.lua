@@ -1,5 +1,33 @@
 local jdtls = require("jdtls")
 
+local function load_env_files(directory)
+	local env = {}
+
+	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	local project_env_file = directory .. "/" .. project_name .. ".env"
+
+	local file = io.open(project_env_file, "r")
+	if file then
+		for line in file:lines() do
+			if not line:match("^%s*#") and not line:match("^%s*$") then
+				local key, value = line:match("^([^=]+)=(.*)$")
+				if key and value then
+					key = key:gsub("^%s*(.-)%s*$", "%1")
+					value = value:gsub("^%s*(.-)%s*$", "%1")
+					value = value:gsub('^"(.*)"$', "%1")
+					value = value:gsub("^'(.*)'$", "%1")
+					env[key] = value
+				end
+			end
+		end
+		file:close()
+	else
+		vim.notify("Could not open project-specific env file: " .. project_env_file, vim.log.levels.WARN)
+	end
+
+	return env
+end
+
 local MASON_PATH = vim.fn.expand("~/.local/share/nvim/mason/packages")
 local CONFIG_PATH = vim.fn.stdpath("config")
 local WORKSPACE_BASE = os.getenv("HOME") .. "/jdtls/workspace"
@@ -154,7 +182,8 @@ config.init_options = {
 }
 
 config.on_attach = function(_, bufnr)
-	jdtls.setup_dap({ hotcodereplace = "auto" })
+	local env_vars = load_env_files("/Users/zhen/.important")
+	jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = { env = env_vars } })
 	require("jdtls.dap").setup_dap_main_class_configs()
 
 	setup_keybindings(bufnr)

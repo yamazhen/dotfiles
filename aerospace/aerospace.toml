@@ -20,7 +20,7 @@ outer.right =      0
 [mode.main.binding]
 cmd-h = []
 cmd-alt-h = []
-alt-enter = 'exec-and-forget open /Applications/Ghostty.app'
+alt-enter = 'exec-and-forget open /Applications/Alacritty.app'
 alt-slash = 'layout tiles horizontal vertical'
 alt-f = 'fullscreen'
 # move focus

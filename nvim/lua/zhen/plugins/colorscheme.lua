@@ -19,7 +19,7 @@ local function color()
 		return get_mode()
 	end
 
-	vim.api.nvim_set_hl(0, "WinSeperator", { fg = "#252530", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
 	vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
 	vim.opt.statusline = " %{v:lua.statusline_mode()} • %<%t%{&modified ? ' ●' : ''} %= %l:%c • %p%% "
