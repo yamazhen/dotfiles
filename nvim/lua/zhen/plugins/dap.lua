@@ -2,11 +2,11 @@ return {
 	"mfussenegger/nvim-dap",
 	dependencies = { "igorlfs/nvim-dap-view", opts = {} },
 	keys = {
-		{ "dv", desc = "Debug: Toggle DAP View" },
+		{ "<leader>dv", desc = "Debug: Toggle DAP View" },
 		{ "<leader>dc", desc = "Debug: Continue" },
-		{ "<leader>do", desc = "Debug: Step Over" },
+		{ "<leader>dn", desc = "Debug: Step Over" },
 		{ "<leader>di", desc = "Debug: Step Into" },
-		{ "<leader>dx", desc = "Debug: Step Out" },
+		{ "<leader>do", desc = "Debug: Step Out" },
 		{ "<leader>b", desc = "Debug: Toggle Breakpoint" },
 		{ "<leader>B", desc = "Debug: Set Conditional Breakpoint" },
 	},
@@ -16,8 +16,8 @@ return {
 
 		dv.setup({
 			winbar = {
-				sections = { "scopes", "breakpoints", "threads", "repl", "console" },
-				default_section = "scopes",
+				sections = { "console", "scopes", "breakpoints", "threads", "repl" },
+				default_section = "console",
 			},
 			windows = {
 				height = 12,
@@ -36,17 +36,20 @@ return {
 		end
 
 		local keymap = vim.keymap.set
-		keymap("n", "dv", function()
+		keymap("n", "<leader>dv", function()
 			dv.toggle()
 			vim.cmd("wincmd j")
 		end, { desc = "Debug: Toggle DAP View" })
 		keymap("n", "<leader>dc", dap.continue)
-		keymap("n", "<leader>do", dap.step_over)
+		keymap("n", "<leader>dn", dap.step_over)
 		keymap("n", "<leader>di", dap.step_into)
-		keymap("n", "<leader>dx", dap.step_out)
+		keymap("n", "<leader>do", dap.step_out)
 		keymap("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
 		keymap("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end, { desc = "Debug: Conditional Breakpoint" })
+
+		keymap("n", "<leader>dr", dap.restart)
+		keymap("n", "<leader>dt", dap.terminate)
 	end,
 }

@@ -17,6 +17,7 @@ bindkey '^L' autosuggest-accept
 
 # === EXPORTS === #
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$ANDROID_HOME/platform-tools:$PATH

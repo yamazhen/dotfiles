@@ -87,7 +87,15 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace Editor']
 
 [[on-window-detected]]
+if.app-id = 'com.alacritty'
+run = ['move-node-to-workspace Editor']
+
+[[on-window-detected]]
 if.app-id = 'com.apple.Safari'
+run = ['move-node-to-workspace Browser']
+
+[[on-window-detected]]
+if.app-id = 'com.zen-browser.zen'
 run = ['move-node-to-workspace Browser']
 
 [[on-window-detected]]

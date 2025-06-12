@@ -29,6 +29,13 @@ autocmd("FileType", {
 	end,
 })
 
+autocmd("FileType", {
+	pattern = { "dap-view-term" },
+	callback = function()
+		keymap("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
+	end,
+})
+
 -- wrap lines in markdown
 autocmd("FileType", {
 	pattern = "markdown",
