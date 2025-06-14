@@ -16,6 +16,7 @@ bindkey '^I' expand-or-complete
 bindkey '^L' autosuggest-accept
 
 # === EXPORTS === #
+export PATH="/Library/TeX/texbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
