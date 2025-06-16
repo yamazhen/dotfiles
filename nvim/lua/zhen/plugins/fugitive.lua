@@ -8,6 +8,7 @@ return {
 		local keymap = vim.keymap.set
 		keymap("n", "gu", "<cmd>diffget //2<CR>")
 		keymap("n", "gh", "<cmd>diffget //3<CR>")
+		vim.opt.diffopt:append("vertical")
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "fugitive",
