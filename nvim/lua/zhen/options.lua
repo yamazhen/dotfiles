@@ -60,5 +60,7 @@ vim.diagnostic.config({
 
 opt.autowriteall = true
 
+vim.o.laststatus = 3
+
 opt.splitbelow = true
 opt.splitright = true
