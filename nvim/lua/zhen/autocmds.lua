@@ -80,3 +80,5 @@ autocmd("WinLeave", {
 		end
 	end,
 })
+
+vim.g.python3_host_prog = vim.fn.exepath("python3")

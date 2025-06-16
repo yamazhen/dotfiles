@@ -18,7 +18,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				sql = { "sql-formatter" },
-				python = { "isort" },
+				python = { "ruff_format", "ruff_organize_imports" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
