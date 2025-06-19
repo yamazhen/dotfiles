@@ -25,9 +25,9 @@ opt.expandtab = true
 
 opt.smartindent = true
 
-opt.wrap = false
-
-opt.colorcolumn = "80"
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
 
 opt.swapfile = false
 opt.backup = false
@@ -51,7 +51,6 @@ vim.schedule(function()
 	opt.clipboard = "unnamedplus"
 end)
 
-vim.o.cmdheight = 0
+opt.autowriteall = true
 
-opt.splitbelow = true
-opt.splitright = true
+vim.o.cmdheight = 0

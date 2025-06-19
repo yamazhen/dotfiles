@@ -56,7 +56,7 @@ return {
 			buffers = {
 				formatter = "path.filename_first",
 			},
-			fzf_colors = true,
+			fzf_colors = false,
 		})
 	end,
 }

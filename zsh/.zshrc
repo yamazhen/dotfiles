@@ -49,6 +49,7 @@ eval "$(zoxide init zsh)"
 # === ALIASES === #
 alias ls="eza -w 60"
 alias vi="nvim"
+alias obsidian="NVIM_APPNAME=nvim_obsidian nvim"
 alias cd="z"
 alias mvni="mvn -T 1C clean install -DskipTests"
 alias springbuildcore="cd solvway-core-libs && mvn -T 1C clean install -DskipTests && cd .. && cd solvway-core-session && mvn -T 1C clean install -DskipTests && cd .."
