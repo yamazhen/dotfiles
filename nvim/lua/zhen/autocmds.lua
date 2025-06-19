@@ -30,7 +30,7 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
-	pattern = { "dap-view-term" },
+	pattern = { "dap-view-term", "gitcommit", "fugitive", "dap-view" },
 	callback = function()
 		keymap("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
 	end,
