@@ -6,8 +6,6 @@ opt.guicursor = ""
 opt.nu = true
 opt.relativenumber = true
 
-opt.foldmethod = "manual"
-
 opt.fillchars = { eob = " " }
 
 o.foldenable = true
@@ -60,7 +58,7 @@ vim.diagnostic.config({
 
 opt.autowriteall = true
 
-vim.o.laststatus = 3
+vim.o.cmdheight = 0
 
 opt.splitbelow = true
 opt.splitright = true

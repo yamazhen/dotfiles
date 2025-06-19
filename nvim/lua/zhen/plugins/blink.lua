@@ -23,7 +23,7 @@ return {
 		keymap = { preset = "default" },
 		appearance = { nerd_font_variant = "mono" },
 		signature = { enabled = true },
-		completion = { documentation = { auto_show = true } },
+		completion = { menu = { border = nil }, documentation = { auto_show = true } },
 		snippets = { preset = "luasnip" },
 		sources = {
 			default = {
