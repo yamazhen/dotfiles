@@ -14,6 +14,9 @@ return {
 			ensure_installed = "",
 			ignore_install = {},
 			modules = {},
+			filetype_to_parsername = {
+				ejs = "html",
+			},
 			incremental_selection = {
 				enable = true,
 				keymaps = {

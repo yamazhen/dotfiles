@@ -13,7 +13,21 @@ local function get_mode()
 end
 
 local function color()
-	vim.cmd("colorscheme vague")
+	local background = "#141415"
+
+	require("rose-pine").setup({
+		styles = {
+			italic = false,
+		},
+		palette = {
+			moon = {
+				base = background,
+				surface = background,
+				overlay = background,
+			},
+		},
+	})
+	vim.cmd("colorscheme rose-pine-moon")
 
 	function _G.statusline_mode()
 		return get_mode()
@@ -26,9 +40,8 @@ local function color()
 end
 
 return {
-	"vague2k/vague.nvim",
-	priority = 1000,
-	lazy = false,
+	"rose-pine/neovim",
+	name = "rose-pine",
 	init = function()
 		color()
 	end,

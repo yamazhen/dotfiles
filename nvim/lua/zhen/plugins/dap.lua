@@ -16,11 +16,10 @@ return {
 
 		dv.setup({
 			winbar = {
-				sections = { "console", "scopes", "breakpoints", "threads", "repl" },
-				default_section = "console",
+				sections = { "watches", "scopes", "breakpoints", "threads", "repl", "console" },
 			},
 			windows = {
-				height = 12,
+				height = 0.5,
 			},
 		})
 

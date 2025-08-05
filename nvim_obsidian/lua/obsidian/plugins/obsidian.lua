@@ -12,10 +12,12 @@ return {
 			daily_notes = {
 				folder = "daily",
 			},
+			ui = {
+				enable = false,
+			},
 			note_id_func = function(title)
 				return title or "untitled"
 			end,
-			disable_frontmatter = true,
 		})
 		local keymap = vim.api.nvim_set_keymap
 		local opts = { noremap = true, silent = true }
@@ -23,5 +25,6 @@ return {
 		keymap("n", "<leader>nn", "<cmd>ObsidianNew<CR>", opts)
 		keymap("n", "<leader>nt", "<cmd>ObsidianToday<CR>", opts)
 		keymap("n", "<leader>nt", "<cmd>ObsidianYesterday<CR>", opts)
+		keymap("n", "<C-e>", "<cmd>ObsidianQuickSwitch<CR>", opts)
 	end,
 }

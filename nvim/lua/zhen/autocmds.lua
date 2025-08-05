@@ -81,4 +81,15 @@ autocmd("WinLeave", {
 	end,
 })
 
+autocmd("LspAttach", {
+	desc = "Set LSP folding if available",
+	callback = function(ctx)
+		local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
+		if client:supports_method("textDocument/foldingRange") then
+			local win = vim.api.nvim_get_current_win()
+			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+		end
+	end,
+})
+
 vim.g.python3_host_prog = vim.fn.exepath("python3")

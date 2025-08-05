@@ -43,6 +43,7 @@ return {
 
 		-- Punpun ASCII art
 		dashboard.section.header.val = {
+			"",
 			"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⠿⠿⠿⣶⣦⣀⠀⠀⠀",
 			"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠛⠉⠀⠀⠀⠀⠀⠀⠉⠻⣧⡀⠀",
 			"⢠⣄⣀⣀⣀⣀⣀⣀⣀⣴⠋⠀⠀⠀⠀⠀⣴⣆⠀⠀⠀⠀⠘⣿⡀",
@@ -80,9 +81,7 @@ return {
 		dashboard.section.buttons.opts.hl = "Normal"
 
 		dashboard.config.layout = {
-			{ type = "padding", val = 2 },
 			dashboard.section.header,
-			{ type = "padding", val = 2 },
 			dashboard.section.buttons,
 		}
 

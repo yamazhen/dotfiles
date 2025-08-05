@@ -2,9 +2,10 @@ return {
 	settings = {
 		basedpyright = {
 			analysis = {
-				typeCheckingMode = "standard",
-				autoSearchPaths = true,
-				useLibraryCodeForTypes = true,
+				typeCheckingMode = "basic",
+				diagnosticMode = "openFilesOnly",
+				autoImportCompletions = false,
+				useLibraryCodeForTypes = false,
 			},
 		},
 	},

@@ -2,7 +2,7 @@
 TERM = "xterm-256color"
 
 [general]
-import = ["~/.config/alacritty/themes/vague.toml"]
+import = ["~/.config/alacritty/themes/rose-pine-moon.toml"]
 
 [window]
 decorations = "None"

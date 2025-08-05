@@ -181,7 +181,7 @@ config.init_options = {
 	bundles = bundles,
 }
 
-config.on_attach = function(_, bufnr)
+config.on_attach = function(client, bufnr)
 	local env_vars = load_env_files("/Users/zhen/.important")
 	jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = { env = env_vars } })
 	require("jdtls.dap").setup_dap_main_class_configs()

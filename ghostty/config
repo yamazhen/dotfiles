@@ -1,10 +1,13 @@
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 15
 font-style = Medium
-theme = vague2k
+font-size = 18
+adjust-cell-height = 16
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+theme = rose-pine-moon
 window-decoration = false
-window-padding-y = 20
-window-padding-x = 20
 macos-window-shadow = false
 shell-integration-features = no-cursor
 cursor-style-blink = false
+command = tmux new-session -A -s main

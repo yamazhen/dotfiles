@@ -10,7 +10,7 @@ return {
 			},
 			indent = { enable = true },
 			auto_install = false,
-			ensure_installed = {"markdown", "markdown_inline"},
+			ensure_installed = { "markdown", "markdown_inline", "html", "latex" },
 		})
 	end,
 }

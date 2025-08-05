@@ -7,4 +7,19 @@ return {
 	--		require("scaffold").setup()
 	--	end,
 	--},
+	-- {
+	-- 	"zap.nvim",
+	-- 	dir = "~/personal/zap.nvim",
+	-- 	config = function()
+	-- 		require("zap").setup({})
+	--
+	-- 		vim.keymap.set("n", "<leader>zb", function()
+	-- 			require("zap").show_buffers()
+	-- 		end, { desc = "Show zap buffers" })
+	--
+	-- 		vim.keymap.set("n", "<leader>zr", function()
+	-- 			require("zap").show_relative()
+	-- 		end, { desc = "Show related files" })
+	-- 	end,
+	-- },
 }

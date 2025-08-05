@@ -18,9 +18,9 @@ opt.foldcolumn = "0"
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 
 opt.smartindent = true
@@ -52,5 +52,6 @@ vim.schedule(function()
 end)
 
 opt.autowriteall = true
+o.conceallevel = 2
 
-vim.o.cmdheight = 0
+o.cmdheight = 0
