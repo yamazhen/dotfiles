@@ -23,7 +23,6 @@ local function color()
 			moon = {
 				base = background,
 				surface = background,
-				overlay = background,
 			},
 		},
 	})
