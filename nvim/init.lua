@@ -11,6 +11,7 @@ vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
+vim.opt.clipboard = "unnamedplus"
 
 vim.pack.add({
 	{ src = "https://github.com/rose-pine/neovim",               name = "rose-pine" },
@@ -32,19 +33,16 @@ require("nvim-treesitter.configs").setup({ highlight = { enable = true }, auto_i
 vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls" })
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.cmd("colorscheme rose-pine-moon")
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
 
 local map = vim.keymap.set
-map("n", "<leader>o", ":update<CR> :source<CR>")
-map("n", "<leader>ee", ":Oil<CR>")
+map("n", "<leader>ee", ":40vsplit | Oil<CR>")
 map("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first' previewer=false<CR>")
 map("n", "<C-p>", "<cmd>FzfLua git_files formatter='path.filename_first' previewer=false<CR>")
 map("n", "<leader>g", "<cmd>G<CR>")
 map("n", "<C-g>", "<cmd>G pull --rebase<CR>")
 map("n", "<leader>tt", vim.diagnostic.setloclist)
 map("n", "<leader>td", vim.diagnostic.setqflist)
-map({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
-map({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
-map({ 'n', 'v', 'x' }, '<leader>p', '"+p<CR>')
 
 local autocmd = vim.api.nvim_create_autocmd
 autocmd('FileType', {
