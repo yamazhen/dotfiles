@@ -38,6 +38,9 @@ require("trouble").setup({ auto_preview = false, keys = { ["<cr>"] = "jump_close
 require("config")
 require("autocmd")
 
+vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls" })
+vim.opt.completeopt = "menu,menuone,noinsert"
+
 local map = vim.keymap.set
 map("n", "<leader>o", ":update<CR> :source<CR>")
 map("n", "<leader>ee", ":update<CR> :Oil<CR>")

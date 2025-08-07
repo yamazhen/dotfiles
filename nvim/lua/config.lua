@@ -1,6 +1,4 @@
 vim.cmd("colorscheme rose-pine-moon | hi statusline guibg=NONE")
-vim.lsp.enable({ "lua_ls", "ts_ls" })
-vim.opt.completeopt = "menu,menuone,noinsert"
 
 local lint = require("lint")
 
