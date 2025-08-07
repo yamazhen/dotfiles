@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 vim.opt.winborder = "single"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -33,7 +34,6 @@ require("nvim-treesitter.configs").setup({ highlight = { enable = true }, auto_i
 require("config")
 require("autocmd")
 
-vim.g.mapleader = " "
 local map = vim.keymap.set
 map("n", "<leader>o", ":update<CR> :source<CR>")
 map("n", "<leader>ee", ":update<CR> :Oil<CR>")
