@@ -24,7 +24,6 @@ vim.pack.add({
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
-	{ src = "https://github.com/github/copilot.vim" },
 })
 
 require("rose-pine").setup({ styles = { transparency = true } })
@@ -39,9 +38,7 @@ require("luasnip").config.set_config({ region_check_events = "InsertEnter", dele
 vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls", "html", "cssls" })
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.cmd("colorscheme rose-pine-moon")
-vim.g.copilot_no_tab_map = true
 
-vim.keymap.set("i", "<C-l>", "copilot#Accept()", { expr = true, replace_keycodes = false })
 vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
 vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>ps", ":lua require('fzf-lua').grep({ search = vim.fn.input('Grep > ')})<cr>")
