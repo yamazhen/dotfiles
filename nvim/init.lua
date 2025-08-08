@@ -45,7 +45,11 @@ vim.keymap.set("n", "<leader>tt", vim.diagnostic.setloclist)
 vim.keymap.set("n", "<leader>td", vim.diagnostic.setqflist)
 
 vim.api.nvim_create_autocmd('FileType',
-	{ pattern = 'qf', callback = function() map('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end })
-vim.api.nvim_create_autocmd("BufWritePre",
-	{ callback = function() if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) > 0 then vim.lsp
-				.buf.format() end end })
+	{ pattern = 'qf', callback = function() vim.keymap.set('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) > 0 then
+			vim.lsp.buf.format()
+		end
+	end
+})
