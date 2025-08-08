@@ -7,7 +7,6 @@ vim.opt.ignorecase = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
-vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -35,24 +34,18 @@ vim.opt.completeopt = "menu,menuone,noinsert"
 vim.cmd("colorscheme rose-pine-moon")
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
 
-local map = vim.keymap.set
-map("n", "<leader>ee", ":40vsplit | Oil<CR>")
-map("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first' previewer=false<CR>")
-map("n", "<C-p>", "<cmd>FzfLua git_files formatter='path.filename_first' previewer=false<CR>")
-map("n", "<leader>g", "<cmd>G<CR>")
-map("n", "<C-g>", "<cmd>G pull --rebase<CR>")
-map("n", "<leader>tt", vim.diagnostic.setloclist)
-map("n", "<leader>td", vim.diagnostic.setqflist)
+vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
+vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first' previewer=false<CR>")
+vim.keymap.set("n", "<C-p>", ":FzfLua git_files formatter='path.filename_first' previewer=false<CR>")
+vim.keymap.set("n", "<leader>g", ":G<CR>")
+vim.keymap.set("n", "<C-g>", ":G pull --rebase<CR>")
+vim.keymap.set("n", "<Esc>", ":noh<CR>")
+vim.keymap.set("n", "<leader>si", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<leader>tt", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<leader>td", vim.diagnostic.setqflist)
 
-local autocmd = vim.api.nvim_create_autocmd
-autocmd('FileType', {
-	pattern = 'qf',
-	callback = function() map('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end
-})
-autocmd("BufWritePre", {
-	callback = function()
-		if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) > 0 then
-			vim.lsp.buf.format()
-		end
-	end
-})
+vim.api.nvim_create_autocmd('FileType',
+	{ pattern = 'qf', callback = function() map('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end })
+vim.api.nvim_create_autocmd("BufWritePre",
+	{ callback = function() if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) > 0 then vim.lsp
+				.buf.format() end end })
