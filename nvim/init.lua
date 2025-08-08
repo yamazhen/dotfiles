@@ -20,21 +20,28 @@ vim.pack.add({
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/mfussenegger/nvim-jdtls",        load = false },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/echasnovski/mini.completion" },
+	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
+	{ src = "https://github.com/github/copilot.vim" },
 })
 
 require("rose-pine").setup({ styles = { transparency = true } })
 require("oil").setup({ view_options = { show_hidden = true } })
 require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } } })
-require("mini.completion").setup()
+require("blink.cmp").setup({ snippets = { preset = "luasnip" } })
 require("nvim-treesitter.configs").setup({ highlight = { enable = true }, auto_install = true })
+require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip").config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
 
-vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls" })
+vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls", "html", "cssls" })
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.cmd("colorscheme rose-pine-moon")
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
+vim.g.copilot_no_tab_map = true
 
+vim.keymap.set("i", "<C-l>", "copilot#Accept()", { expr = true, replace_keycodes = false })
 vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
 vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>ps", ":lua require('fzf-lua').grep({ search = vim.fn.input('Grep > ')})<cr>")
@@ -47,6 +54,7 @@ vim.api.nvim_create_autocmd('FileType',
 	{ pattern = 'qf', callback = function() vim.keymap.set('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end })
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
+		if vim.bo.filetype == "html" and vim.fn.expand("%:e") == "ejs" then return end
 		if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) > 0 then
 			vim.lsp.buf.format()
 		end
