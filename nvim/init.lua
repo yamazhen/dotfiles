@@ -11,6 +11,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.clipboard = "unnamedplus"
+vim.opt.hlsearch = false
 
 vim.pack.add({
 	{ src = "https://github.com/rose-pine/neovim",               name = "rose-pine" },
@@ -25,7 +26,7 @@ vim.pack.add({
 
 require("rose-pine").setup({ styles = { transparency = true } })
 require("oil").setup({ view_options = { show_hidden = true } })
-require("fzf-lua").setup()
+require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } } })
 require("mini.completion").setup()
 require("nvim-treesitter.configs").setup({ highlight = { enable = true }, auto_install = true })
 
@@ -35,11 +36,8 @@ vim.cmd("colorscheme rose-pine-moon")
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
 
 vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
-vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first' previewer=false<CR>")
-vim.keymap.set("n", "<C-p>", ":FzfLua git_files formatter='path.filename_first' previewer=false<CR>")
-vim.keymap.set("n", "<leader>g", ":G<CR>")
-vim.keymap.set("n", "<C-g>", ":G pull --rebase<CR>")
-vim.keymap.set("n", "<Esc>", ":noh<CR>")
+vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>ps", ":lua require('fzf-lua').grep({ search = vim.fn.input('Grep > ')})<cr>")
 vim.keymap.set("n", "<leader>si", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>tt", vim.diagnostic.setloclist)
 vim.keymap.set("n", "<leader>td", vim.diagnostic.setqflist)
