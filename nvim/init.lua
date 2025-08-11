@@ -36,7 +36,6 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip").config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
 
 vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls", "html", "cssls" })
-vim.opt.completeopt = "menu,menuone,noinsert"
 vim.cmd("colorscheme rose-pine-moon")
 
 vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
