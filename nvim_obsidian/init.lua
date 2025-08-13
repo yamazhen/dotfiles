@@ -13,6 +13,9 @@ vim.opt.scrolloff = 10
 vim.opt.clipboard = "unnamedplus"
 vim.opt.hlsearch = false
 vim.opt.cmdheight = 0
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim-treesitter#foldexpr()"
+vim.opt.foldlevel = 0
 
 vim.pack.add({
 	{ src = "https://github.com/rose-pine/neovim",                         name = "rose-pine" },
