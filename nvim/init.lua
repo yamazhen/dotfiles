@@ -37,6 +37,7 @@ require("luasnip").config.set_config({ region_check_events = "InsertEnter", dele
 
 vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls", "html", "cssls", "kotlin_lsp" })
 vim.cmd("colorscheme rose-pine-moon")
+vim.opt.diffopt:append("vertical")
 
 vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
 vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first'<CR>")
