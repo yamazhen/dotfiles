@@ -25,6 +25,9 @@ require("conform").setup({
 		javascriptreact = { "prettierd" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
+		html = {"prettierd"},
+		css = {"prettierd"},
+		json = {"prettierd"}
 	},
 })
 
@@ -45,4 +48,3 @@ vim.cmd("colorscheme rose-pine-moon")
 vim.cmd("highlight Comment cterm=italic gui=italic")
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#252530" })
 vim.opt.diffopt:append("vertical")
-vim.g.undotree_SetFocusWhenToggle = 1

@@ -25,7 +25,6 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim" },
 	{ src = "https://github.com/j-hui/fidget.nvim" },
-	{ src = "https://github.com/mbbill/undotree" },
 })
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -38,6 +37,7 @@ vim.keymap.set("n", "<leader>pws", "<cmd>FzfLua grep_cword formatter='path.filen
 vim.keymap.set("n", "<leader>pWs", "<cmd>FzfLua grep_cWORD formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>g", "<cmd>G<CR>")
 vim.keymap.set("n", "<leader>si", require("fzf-lua").lsp_code_actions)
+vim.keymap.set("n", "<leader>sd", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0<CR>")
 vim.keymap.set("n", "s", "<C-w>")
 vim.keymap.set("n", "sf", "<C-w>|")
