@@ -18,9 +18,11 @@ bindkey '^L' autosuggest-accept
 # === EXPORTS === #
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH="/opt/homebrew/opt/trash-cli/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH="/opt/homebrew/opt/trash-cli/bin:$PATH"
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/emulator:$PATH
@@ -66,6 +68,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
-# i dont know why but tailwind is not stopping and draining my battery
-pkill -f tailwindcss-language-server

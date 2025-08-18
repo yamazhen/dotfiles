@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.o.mouse = ""
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
@@ -10,41 +11,38 @@ vim.opt.signcolumn = "yes"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.clipboard = "unnamedplus"
-vim.opt.hlsearch = false
+vim.o.guicursor = ""
 
 vim.pack.add({
-	{ src = "https://github.com/rose-pine/neovim",               name = "rose-pine" },
-	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
-	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/folke/trouble.nvim" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
+	{ src = "https://github.com/mbbill/undotree" },
 })
 
-require("blink.cmp").setup({ snippets = { preset = "luasnip" } })
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })
-require("luasnip").config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
-require("rose-pine").setup({ styles = { transparency = true } })
-require("oil").setup({ view_options = { show_hidden = true } })
-require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } } })
-require("nvim-treesitter.configs").setup({ highlight = { enable = true }, auto_install = true })
-
-vim.lsp.enable({ "lua_ls", "ts_ls", "emmet_ls", "html", "cssls", "kotlin_lsp" })
-vim.cmd("colorscheme rose-pine-moon")
-vim.opt.diffopt:append("vertical")
-
-vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
-vim.keymap.set("n", "<C-e>", ":FzfLua files formatter='path.filename_first'<CR>")
-vim.keymap.set("n", "<leader>ps", ":lua require('fzf-lua').grep({ search = vim.fn.input('Grep > ')})<cr>")
-vim.keymap.set("n", "<leader>g", ":G<CR>")
-vim.keymap.set("n", "<leader>si", vim.lsp.buf.code_action)
-vim.keymap.set("n", "<leader>tt", vim.diagnostic.setloclist)
-vim.keymap.set("n", "<leader>td", vim.diagnostic.setqflist)
-vim.keymap.set("n", "==", vim.lsp.buf.format)
-
-vim.api.nvim_create_autocmd('FileType', { pattern = 'qf', callback = function() vim.keymap.set('n', '<CR>', '<CR>:lclose<CR>:cclose<CR>', { buffer = true }) end })
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>")
+vim.keymap.set("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>ps", "<cmd>FzfLua grep_project formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>pws", "<cmd>FzfLua grep_cword formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>pWs", "<cmd>FzfLua grep_cWORD formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>g", "<cmd>G<CR>")
+vim.keymap.set("n", "<leader>si", require("fzf-lua").lsp_code_actions)
+vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0<CR>")
+vim.keymap.set("n", "s", "<C-w>")
+vim.keymap.set("n", "sf", "<C-w>|")
+vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle focus=true<CR>")
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "=", function()
+	require("conform").format({ lsp_format = "fallback" })
+end)
