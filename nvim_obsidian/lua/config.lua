@@ -1,3 +1,22 @@
+require("rose-pine").setup({ styles = { transparency = true, italic = false } })
+require("blink.cmp").setup()
+require("oil").setup({ view_options = { show_hidden = true } })
+
+require("render-markdown").setup({
+	completions = { blink = { enabled = true } },
+	code = { border = "thin", width = "block" },
+})
+
+require("nvim-treesitter.configs").setup({
+	highlight = { enable = true, additional_vim_regex_highlighting = false },
+	auto_install = true,
+	sync_install = false,
+	ensure_installed = "",
+	ignore_install = {},
+	modules = {},
+	indent = { enable = true },
+})
+
 require("obsidian").setup({
 	workspaces = {
 		{
@@ -8,20 +27,23 @@ require("obsidian").setup({
 	completion = { blink = true },
 	daily_notes = { folder = "daily" },
 	disable_frontmatter = true,
-	note_id_func = function(title) return title or "untitled" end,
+	note_id_func = function(title)
+		return title or "untitled"
+	end,
 	legacy_commands = false,
 })
+
 require("snacks").setup({
 	image = { enabled = true },
 	picker = {
 		formatters = {
 			file = {
-				filename_first = true
-			}
+				filename_first = true,
+			},
 		},
 		layout = {
 			preset = "ivy",
-			preview = false
+			preview = false,
 		},
 	},
 	dashboard = {
@@ -36,8 +58,10 @@ require("snacks").setup({
 						key = "l",
 						desc = "Recent: " .. display_name,
 						action = function()
-							if recent ~= "None" then vim.cmd("edit " .. recent) end
-						end
+							if recent ~= "None" then
+								vim.cmd("edit " .. recent)
+							end
+						end,
 					},
 					{ icon = "", key = "f", desc = "Find Note", action = ":Obsidian quick_switch" },
 					{ icon = "", key = "n", desc = "New Note", action = ":Obsidian new" },
@@ -61,16 +85,12 @@ require("snacks").setup({
 		sections = {
 			{ section = "header" },
 			{ section = "keys" },
-		}
+		},
 	},
 })
+
 vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "white" })
 vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = "white" })
 vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "white" })
 vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = "white" })
 vim.api.nvim_set_hl(0, "SnacksDashboardFooter", { fg = "white" })
-vim.keymap.set("n", "<leader>ee", ":Oil<CR>")
-vim.keymap.set("n", "<C-e>", ":Obsidian quick_switch<CR>")
-vim.keymap.set("n", "<leader>on", ":Obsidian new<CR>")
-vim.keymap.set("n", "<leader>ot", ":Obsidian today<CR>")
-vim.keymap.set("n", "<C-]>", ":Obsidian follow_link<CR>")

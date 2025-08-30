@@ -11,3 +11,4 @@ shell-integration-features = no-cursor
 cursor-style-blink = false
 cursor-color = #EB6F92
 command = tmux new-session -A -s main
+
