@@ -13,7 +13,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 
-vim.pack.add({
+vim.pack.add {
 	{ src = "https://github.com/rose-pine/neovim",               name = "rose-pine" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -23,24 +23,27 @@ vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/github/copilot.vim" },
-})
+	{ src = "https://github.com/folke/trouble.nvim" }
+}
 
-require("mason").setup({ registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } })
-require("blink.cmp").setup({ completion = { documentation = { auto_show = true } } })
-require("rose-pine").setup({ styles = { transparency = true, italic = false } })
-require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } }, files = { no_ignore = true } })
-require("oil").setup({ view_options = { show_hidden = true } })
-require("mason-lspconfig").setup()
+require "mason".setup { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } }
+require "blink.cmp".setup { completion = { documentation = { auto_show = true } } }
+require "rose-pine".setup { styles = { transparency = true, italic = false } }
+require "fzf-lua".setup { "ivy", winopts = { border = "none", preview = { hidden = true } }, files = { no_ignore = true } }
+require "oil".setup { view_options = { show_hidden = true } }
+require "nvim-treesitter.configs".setup { highlight = { enable = true }, auto_install = true }
+require "mason-lspconfig".setup()
+require "trouble".setup { auto_preview = false, keys = { ["<cr>"] = "jump_close" } }
 
 vim.cmd("colorscheme rose-pine-moon")
 vim.opt.diffopt:append("vertical")
 
-vim.api.nvim_set_keymap("i", "<C-l>", "copilot#Accept('<CR>')", { expr = true, silent = true, noremap = true })
 vim.keymap.set("n", "<leader>g", "<cmd>G<CR>")
 vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>ps", "<cmd>FzfLua grep_project formatter='path.filename_first'<CR>")
+vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<CR>")
+vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle focus=true<CR>")
 vim.keymap.set("n", "<leader>si", require("fzf-lua").lsp_code_actions)
 vim.keymap.set("n", "<leader>sd", vim.lsp.buf.definition)
 vim.keymap.set("n", "=", vim.lsp.buf.format)
