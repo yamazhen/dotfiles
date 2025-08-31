@@ -29,7 +29,7 @@ vim.pack.add({
 require("mason").setup({ registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } })
 require("blink.cmp").setup({ completion = { documentation = { auto_show = true } } })
 require("rose-pine").setup({ styles = { transparency = true, italic = false } })
-require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } } })
+require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } }, files = { no_ignore = true } })
 require("oil").setup({ view_options = { show_hidden = true } })
 require("mason-lspconfig").setup()
 

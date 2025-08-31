@@ -5,6 +5,10 @@
 			{
 				"language": "html",
 				"path": "./thymeleaf.json"
+			},
+			{
+				"language": "typescriptreact",
+				"path": "./typescriptreact.json"
 			}
 		]
 	}
