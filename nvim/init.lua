@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.o.mouse = ""
 vim.o.clipboard = "unnamedplus"
+vim.o.colorcolumn = "80"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
@@ -29,9 +30,9 @@ vim.pack.add {
 require "mason".setup { registries = { "github:nvim-java/mason-registry", "github:mason-org/mason-registry" } }
 require "blink.cmp".setup { completion = { documentation = { auto_show = true } } }
 require "rose-pine".setup { styles = { transparency = true, italic = false } }
-require "fzf-lua".setup { "ivy", winopts = { border = "none", preview = { hidden = true } }, files = { no_ignore = true } }
+require "fzf-lua".setup { "ivy", winopts = { border = "none", preview = { hidden = true } } }
 require "oil".setup { view_options = { show_hidden = true } }
-require "nvim-treesitter.configs".setup { highlight = { enable = true }, auto_install = true }
+require "nvim-treesitter.configs".setup { highlight = { enable = true }, auto_install = true, indent = { enable = true } }
 require "mason-lspconfig".setup()
 require "trouble".setup { auto_preview = false, keys = { ["<cr>"] = "jump_close" } }
 
@@ -44,6 +45,6 @@ vim.keymap.set("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first'<
 vim.keymap.set("n", "<leader>ps", "<cmd>FzfLua grep_project formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<CR>")
 vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle focus=true<CR>")
-vim.keymap.set("n", "<leader>si", require("fzf-lua").lsp_code_actions)
+vim.keymap.set("n", "<leader>si", "<cmd>FzfLua lsp_code_actions silent=true<CR>")
 vim.keymap.set("n", "<leader>sd", vim.lsp.buf.definition)
 vim.keymap.set("n", "=", vim.lsp.buf.format)

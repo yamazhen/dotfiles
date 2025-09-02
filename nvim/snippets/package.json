@@ -8,7 +8,27 @@
 			},
 			{
 				"language": "typescriptreact",
-				"path": "./typescriptreact.json"
+				"path": "./react.json"
+			},
+			{
+				"language": "javascriptreact",
+				"path": "./react.json"
+			},
+			{
+				"language": "typescript",
+				"path": "./jsts.json"
+			},
+			{
+				"language": "javascript",
+				"path": "./jsts.json"
+			},
+			{
+				"language": "typescriptreact",
+				"path": "./jsts.json"
+			},
+			{
+				"language": "javascriptreact",
+				"path": "./jsts.json"
 			}
 		]
 	}
