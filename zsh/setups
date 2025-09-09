@@ -1,0 +1,14 @@
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(zoxide init zsh)"
+
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify

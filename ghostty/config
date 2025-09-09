@@ -1,0 +1,12 @@
+font-family = JetBrainsMono Nerd Font Mono
+font-style = Light
+font-size = 18
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+theme = rose-pine-moon
+macos-titlebar-style = hidden
+shell-integration-features = no-cursor
+cursor-style-blink = false
+cursor-color = #EB6F92
+command = tmux new-session -A -s main

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+SSH_CONFIG="$HOME/.ssh/config"
+TUNNEL_DIR="$HOME/.ssh/tunnel"
+
+options=""
+
+if [ -f "$SSH_CONFIG" ]; then
+    ssh_hosts=$(grep "^Host " "$SSH_CONFIG" | grep -v "\*" | sed 's/^Host /ssh:/')
+    options="$ssh_hosts"
+fi
+
+if [ -d "$TUNNEL_DIR" ]; then
+    tunnel_options=$(find "$TUNNEL_DIR" -name "*.sh" -exec basename {} .sh \; | sed 's/^/tunnel:/')
+    if [ -n "$options" ] && [ -n "$tunnel_options" ]; then
+        options="$options\n$tunnel_options"
+    elif [ -n "$tunnel_options" ]; then
+        options="$tunnel_options"
+    fi
+fi
+
+selected=$(echo -e "$options" | fzf --prompt="Select connection: " --border --delimiter=: --with-nth=2 --preview='echo "Type: {1}\nName: {2}"' --preview-window=up:2)
+
+if [ -z "$selected" ]; then
+    echo "No selection made"
+    exit 0
+fi
+
+type=$(echo "$selected" | cut -d: -f1)
+name=$(echo "$selected" | cut -d: -f2)
+
+case "$type" in
+    "ssh")
+        tmux new-window "ssh $name"
+        ;;
+    "tunnel")
+        tunnel_script="$TUNNEL_DIR/$name.sh"
+        if [ -f "$tunnel_script" ]; then
+            tmux new-window "bash $tunnel_script"
+        else
+            echo "Error: Tunnel script $tunnel_script not found" >&2
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Unknown connection type: $type"
+        exit 1
+        ;;
+esac

@@ -1,0 +1,9 @@
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^L' autosuggest-accept
+
+alias vi=nvim
+alias c=clear
+alias cd=z
+alias ls=eza
+alias neofetch="neofetch --ascii ~/Documents/ascii.txt"

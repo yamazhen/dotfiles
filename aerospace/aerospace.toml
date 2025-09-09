@@ -1,0 +1,136 @@
+start-at-login = true
+enable-normalization-flatten-containers = true 
+enable-normalization-opposite-orientation-for-nested-containers = true 
+accordion-padding = 200
+default-root-container-layout = 'accordion'
+default-root-container-orientation = 'auto'
+key-mapping.preset = 'qwerty'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+[gaps]
+inner.horizontal = 10
+inner.vertical =   10
+outer.left =       20
+outer.bottom =     20
+outer.top =        20
+outer.right =      20
+
+[mode.main.binding]
+cmd-h = []
+cmd-alt-h = []
+alt-enter = 'exec-and-forget open /Applications/Ghostty.app'
+# move focus
+alt-h =          'focus --boundaries-action wrap-around-the-workspace left'
+alt-j =          'focus --boundaries-action wrap-around-the-workspace down'
+alt-k =            'focus --boundaries-action wrap-around-the-workspace up'
+alt-l =         'focus --boundaries-action wrap-around-the-workspace right'
+# move windows
+alt-shift-left =    'move left'
+alt-shift-down =    'move down'
+alt-shift-up =      'move up'
+alt-shift-right =   'move right'
+# focus workspace 
+alt-1 = 'workspace Editor'
+alt-2 = 'workspace Util'
+alt-3 = 'workspace Browser'
+alt-4 = 'workspace Comm'
+alt-comma= "layout accordion"
+alt-5 = 'workspace Music'
+alt-d = 'workspace Desktop'
+alt-p = 'workspace Postman'
+alt-w = 'workspace Database'
+alt-s = 'workspace SMonitor'
+alt-shift-1 = ['move-node-to-workspace Editor', "workspace Editor"]
+alt-shift-2 = ['move-node-to-workspace Util', "workspace Util"]
+alt-shift-3 = ['move-node-to-workspace Browser', "workspace Browser"]
+alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]
+alt-shift-5 = ['move-node-to-workspace Music', "workspace Music"]
+alt-shift-d = ['move-node-to-workspace Desktop', "workspace Desktop"]
+alt-shift-p = ['move-node-to-workspace Postman', "workspace Postman"]
+alt-shift-w = ['move-node-to-workspace Database', "workspace Database"]
+alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
+
+alt-r = 'mode edit'
+[mode.edit.binding]
+enter = 'mode main'
+esc = ['reload-config', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+Desktop = 'main'
+Editor = 'main'
+Util = 'main'
+Browser = 'main'
+Music = 'main'
+Comm = 'main'
+SMonitor = 'secondary'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['move-node-to-workspace Editor']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = ['move-node-to-workspace Browser']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.FaceTime'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.Word"
+run = ['move-node-to-workspace Util']
+
+[[on-window-detected]]
+if.app-id = "com.apple.Notes"
+run = ['move-node-to-workspace Util']
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = ['move-node-to-workspace Comm']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace Music']
+
+[[on-window-detected]]
+if.app-id = 'com.codeweavers.CrossOver'
+run = ['move-node-to-workspace Desktop']
+
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+run = ['move-node-to-workspace Postman']
+
+[[on-window-detected]]
+if.app-id = 'com.kakao.KakaoTalkMac'
+run = ['move-node-to-workspace Comm']
+
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'
+run = ['move-node-to-workspace Database']
+
+[[on-window-detected]]
+if.app-id = 'com.github.Electron'
+run = ['move-node-to-workspace Util']
+
+[[on-window-detected]]
+if.app-id = 'com.yamazhen.soma'
+run = ['move-node-to-workspace SMonitor']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
+run = ['layout floating']
+
+[[on-window-detected]]
+run = ['move-node-to-workspace Desktop']
