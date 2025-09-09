@@ -1,0 +1,28 @@
+{
+	"display": {
+		"color": {
+			"keys": "white",
+			"title": "white",
+		},
+	},
+    "modules": [
+        { "type": "os" },
+        { "type": "host" },
+        { "type": "kernel" },
+        { "type": "uptime" },
+        { "type": "packages" },
+        { "type": "shell" },
+        { "type": "resolution" },
+        { "type": "cpu" },
+        { "type": "gpu" },
+        { "type": "memory" },
+        { "type": "terminal" },
+        { "type": "localip" }
+    ],
+    "logo": {
+        "source": "~/.config/fastfetch/ascii.txt",
+        "color": {
+            "1": "white",
+        }
+    }
+}

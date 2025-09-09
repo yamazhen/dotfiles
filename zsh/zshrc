@@ -3,4 +3,4 @@ source $HOME/.config/zsh/binds
 source $HOME/.config/zsh/exports
 source $HOME/.config/zsh/fzf_opts
 
-neofetch
+fastfetch

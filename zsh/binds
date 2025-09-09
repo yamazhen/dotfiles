@@ -6,4 +6,3 @@ alias vi=nvim
 alias c=clear
 alias cd=z
 alias ls=eza
-alias neofetch="neofetch --ascii ~/Documents/ascii.txt"
