@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/mfussenegger/nvim-jdtls" } })
+require("mini.deps").add({ source = "https://github.com/mfussenegger/nvim-jdtls" })
 
 local jdtls = require("jdtls")
 local mason = vim.fn.expand("~/.local/share/nvim/mason/packages")
@@ -11,19 +11,23 @@ jdtls.start_or_attach({
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Xmx1g",
-		"--add-modules=ALL-SYSTEM", "--add-opens",
-		"java.base/java.util=ALL-UNNAMED", "--add-opens",
+		"--add-modules=ALL-SYSTEM",
+		"--add-opens",
+		"java.base/java.util=ALL-UNNAMED",
+		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-		"-javaagent:" .. mason .. "/lombok-nightly/lombok.jar", "-jar",
+		"-javaagent:" .. mason .. "/lombok-nightly/lombok.jar",
+		"-jar",
 		vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
 		"-configuration",
 		jdtls_path .. "/config_mac",
-		"-data", workspace,
+		"-data",
+		workspace,
 	},
 	settings = {
 		java = {
 			format = { enabled = true },
-			saveActions = { organizeImports = true }
-		}
-	}
+			saveActions = { organizeImports = true },
+		},
+	},
 })

@@ -17,7 +17,14 @@ require("mini.deps").later(function()
 		},
 	})
 
-	require("blink.cmp").setup({ completion = { documentation = { auto_show = true } } })
+	require("blink.cmp").setup({ snippets = { preset = "luasnip" } })
+
+	require("luasnip.loaders.from_lua").load({ paths = { "./snippets" } })
+	require("luasnip.loaders.from_vscode").lazy_load()
+	require("luasnip").config.set_config({
+		region_check_events = "InsertEnter",
+		delete_check_events = "InsertLeave",
+	})
 
 	require("nvim-treesitter.configs").setup({
 		highlight = {
@@ -40,6 +47,9 @@ require("mini.deps").later(function()
 			javascriptreact = { "prettierd" },
 			typescriptreact = { "prettierd" },
 			typescript = { "prettierd" },
+		},
+		default_format_opts = {
+			lsp_format = "fallback",
 		},
 	})
 end)
