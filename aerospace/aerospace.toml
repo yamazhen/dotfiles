@@ -52,6 +52,7 @@ alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
 
 alt-r = 'mode edit'
 [mode.edit.binding]
+f = "layout tiling floating"
 enter = 'mode main'
 esc = ['reload-config', 'mode main']
 
