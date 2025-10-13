@@ -1,4 +1,4 @@
-require("mini.deps").add({ source = "https://github.com/mfussenegger/nvim-jdtls" })
+vim.pack.add({ { src = "https://github.com/mfussenegger/nvim-jdtls" } })
 
 local jdtls = require("jdtls")
 local mason = vim.fn.expand("~/.local/share/nvim/mason/packages")
