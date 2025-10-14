@@ -76,6 +76,7 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		html = { "prettierd" },
 		css = { "prettierd" },
+		python = { "ruff" },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
