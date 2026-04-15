@@ -1,11 +1,12 @@
 font-family = JetBrainsMono Nerd Font Mono
-font-style = Light
+font-style = Regular
 font-size = 18
+adjust-cell-height = 10
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
+window-decoration = none
 theme = rose-pine-moon
-macos-titlebar-style = hidden
 shell-integration-features = no-cursor
 cursor-style-blink = false
 cursor-color = #EB6F92

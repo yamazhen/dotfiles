@@ -7,3 +7,4 @@ alias c=clear
 alias cd=z
 alias ls=eza
 alias springbuildcore="cd solvway-core-libs && mvnd -T 1C clean install -DskipTests && cd .. && cd solvway-core-session && mvnd -T 1C clean install -DskipTests && cd .."
+alias leet="NVIM_APPNAME=leetcode nvim"

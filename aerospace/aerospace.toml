@@ -8,12 +8,12 @@ key-mapping.preset = 'qwerty'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       20
-outer.bottom =     20
-outer.top =        20
-outer.right =      20
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
 
 [mode.main.binding]
 cmd-h = []
@@ -37,18 +37,16 @@ alt-4 = 'workspace Comm'
 alt-comma= "layout accordion"
 alt-5 = 'workspace Music'
 alt-d = 'workspace Desktop'
-alt-p = 'workspace Postman'
+alt-b = 'workspace Bruno'
 alt-w = 'workspace Database'
-alt-s = 'workspace SMonitor'
 alt-shift-1 = ['move-node-to-workspace Editor', "workspace Editor"]
 alt-shift-2 = ['move-node-to-workspace Util', "workspace Util"]
 alt-shift-3 = ['move-node-to-workspace Browser', "workspace Browser"]
 alt-shift-4 = ['move-node-to-workspace Comm', "workspace Comm"]
 alt-shift-5 = ['move-node-to-workspace Music', "workspace Music"]
 alt-shift-d = ['move-node-to-workspace Desktop', "workspace Desktop"]
-alt-shift-p = ['move-node-to-workspace Postman', "workspace Postman"]
+alt-shift-p = ['move-node-to-workspace Bruno', "workspace Bruno"]
 alt-shift-w = ['move-node-to-workspace Database', "workspace Database"]
-alt-shift-s = ['move-node-to-workspace SMonitor', "workspace Monitor"]
 
 alt-r = 'mode edit'
 [mode.edit.binding]
@@ -60,10 +58,9 @@ esc = ['reload-config', 'mode main']
 Desktop = 'main'
 Editor = 'main'
 Util = 'main'
-Browser = 'main'
+Browser = 'secondary'
 Music = 'main'
 Comm = 'main'
-SMonitor = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -110,8 +107,8 @@ if.app-id = 'com.codeweavers.CrossOver'
 run = ['move-node-to-workspace Desktop']
 
 [[on-window-detected]]
-if.app-id = 'com.postmanlabs.mac'
-run = ['move-node-to-workspace Postman']
+if.app-id = 'com.usebruno.app'
+run = ['move-node-to-workspace Bruno']
 
 [[on-window-detected]]
 if.app-id = 'com.kakao.KakaoTalkMac'
@@ -126,12 +123,16 @@ if.app-id = 'com.github.Electron'
 run = ['move-node-to-workspace Util']
 
 [[on-window-detected]]
-if.app-id = 'com.yamazhen.soma'
-run = ['move-node-to-workspace SMonitor']
-
-[[on-window-detected]]
 if.app-id = 'com.apple.iphonesimulator'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.chromium.Chromium'
+run = ['move-node-to-workspace Browser']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = ['move-node-to-workspace Comm']
 
 [[on-window-detected]]
 run = ['move-node-to-workspace Desktop']
