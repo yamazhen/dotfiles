@@ -1,7 +1,7 @@
 font-family = JetBrainsMono Nerd Font Mono
 font-style = Regular
 font-size = 18
-adjust-cell-height = 10
+adjust-cell-height = 16
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
@@ -11,3 +11,4 @@ shell-integration-features = no-cursor
 cursor-style-blink = false
 cursor-color = #EB6F92
 command = tmux new-session -A -s main
+custom-shader = shaders/cursor_smear.glsl

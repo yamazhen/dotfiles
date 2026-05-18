@@ -23,18 +23,21 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/Saghen/blink.lib" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/NMAC427/guess-indent.nvim" },
+	{ src = "https://github.com/folke/trouble.nvim" },
 })
 
+require("vim._core.ui2").enable()
 require("rose-pine").setup({ styles = { transparency = true, italic = false } })
 require("oil").setup({ view_options = { show_hidden = true } })
 require("fzf-lua").setup({ "ivy", winopts = { border = "none", preview = { hidden = true } } })
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_enable = { exclude = { "jdtls", "ts_ls" } } })
-require("blink.cmp").setup()
 require("guess-indent").setup()
+require("trouble").setup({ auto_preview = false, focus = true, follow = false })
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -44,7 +47,7 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		html = { "prettierd" },
 		css = { "prettierd" },
-		json = { "jq" },
+		json = { "prettierd" },
 		python = { "ruff_organize_imports", "ruff_format" },
 	},
 	default_format_opts = {
@@ -52,13 +55,20 @@ require("conform").setup({
 	},
 })
 
+local cmp = require("blink.cmp")
+cmp.build():wait(60000)
+cmp.setup()
+
 vim.cmd("colorscheme rose-pine-moon")
 vim.opt.diffopt:append("vertical")
 vim.filetype.add({ pattern = { [".*/templates/.*%.ya?ml"] = "helm" } }) -- for helm
-local highlight = function(e) -- manually install parsers (TSInstall)
-	pcall(vim.treesitter.start, e.buf, vim.treesitter.language.get_lang(e.match) or e.match)
-end -- this loads the parsers for the language
-vim.api.nvim_create_autocmd("FileType", { pattern = { "*" }, callback = highlight })
+
+-- stylua: ignore
+vim.api.nvim_create_autocmd("FileType", { callback = function(e)
+	local lang = vim.treesitter.language.get_lang(e.match) or e.match
+	if not require("nvim-treesitter.parsers")[lang] then return end
+	require("nvim-treesitter").install(lang):await(function() pcall(vim.treesitter.start, e.buf, lang) end)
+end })
 
 vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<leader>g", "<cmd>Git<CR>")
@@ -66,9 +76,13 @@ vim.keymap.set("n", "<C-e>", "<cmd>FzfLua files formatter='path.filename_first'<
 vim.keymap.set("n", "<leader>ps", "<cmd>FzfLua grep_project formatter='path.filename_first'<CR>")
 vim.keymap.set("n", "<leader>si", "<cmd>FzfLua lsp_code_actions silent=true<CR>")
 vim.keymap.set("n", "<leader>sd", vim.lsp.buf.definition)
-vim.keymap.set("n", "<leader>tt", "<cmd>lua vim.diagnostic.setloclist({open=true, bufnr=0})<CR>")
+vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>")
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end)
 vim.keymap.set("n", "=", function()
 	vim.snippet.stop()
 	require("conform").format()
-	vim.cmd("GuessIndent")
+	vim.cmd("GuessIndent") -- hack to set indent based on format rules
 end)

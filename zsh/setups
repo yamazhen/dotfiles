@@ -6,7 +6,10 @@ source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(zoxide init zsh)"
+if [ -z "$DISABLE_ZOXIDE" ]; then
+	eval "$(zoxide init zsh)"
+	alias cd=z
+fi
 
 SAVEHIST=1000
 HISTSIZE=999

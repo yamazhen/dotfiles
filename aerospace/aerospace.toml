@@ -56,11 +56,11 @@ esc = ['reload-config', 'mode main']
 
 [workspace-to-monitor-force-assignment]
 Desktop = 'main'
-Editor = 'main'
 Util = 'main'
-Browser = 'secondary'
+Browser = 'main' # temporary, switch back to secondary
 Music = 'main'
 Comm = 'main'
+Editor = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
